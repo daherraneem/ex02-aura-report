@@ -311,3 +311,15 @@ TSWLatexianTemp*
 # option is specified. Footnotes are the stored in a file with suffix Notes.bib.
 # Uncomment the next line to have this generated file ignored.
 #*Notes.bib
+
+## ---- Project-specific ----
+# Lecturer's copyrighted course files: kept locally in docs/, never pushed
+docs/preparation-report-book.pdf
+docs/l04-summary.pdf
+
+# Build outputs (the final PDF is added on purpose at submission)
+/main.pdf
+tests/*.pdf
+
+# Python
+__pycache__/

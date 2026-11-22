@@ -1,0 +1,26 @@
+% Report roadmap: chapters 1-8, read right to left.
+% Used inside \begin{diagram} (LTR); Hebrew labels use \texthebrew.
+% Colors follow the chapter shades of aura-report.cls.
+\begin{tikzpicture}[
+    step/.style={rectangle, rounded corners=5pt, draw=#1, line width=0.9pt,
+      fill=#1!12, minimum width=1.55cm, minimum height=1.25cm,
+      text width=1.5cm, align=center, font=\sffamily\footnotesize,
+      text=AuraPlum},
+    num/.style={circle, fill=#1, text=white, inner sep=1.4pt,
+      font=\sffamily\scriptsize\bfseries},
+    flow/.style={-{Stealth[length=5pt]}, AuraGold, line width=1pt}]
+  \foreach \i/\c/\t in {
+      1/AuraHoney/{מבוא\\ורקע},
+      2/AuraPeach/{הבעיה\\והיעדים},
+      3/AuraBerry/{ספרות\\ומאמר דגל},
+      4/AuraRuby/{חקר\\שוק},
+      5/AuraCocoa/{חלופות\\השקה},
+      6/AuraHoney/{תוכנית\\עבודה},
+      7/AuraPeach/{ניהול\\סיכונים},
+      8/AuraBerry/{סיכום}} {
+    \node[step=\c] (s\i) at ({-1.92*\i}, 0) {\texthebrew{\t}};
+    \node[num=\c] at (s\i.north) {\i};
+  }
+  \foreach \i [evaluate=\i as \j using int(\i+1)] in {1,...,7}
+    \draw[flow] (s\i.west) -- (s\j.east);
+\end{tikzpicture}

@@ -1,0 +1,52 @@
+% BiDi stress test for aura-report.cls (booklet, Prompt B4).
+% Build from the project root:
+%   xelatex -interaction=nonstopmode -output-directory=tests tests/bidi-test.tex
+% Every class change must keep this page correct.
+\documentclass{aura-report}
+\begin{document}
+\mainmatter
+\chapter{בדיקת כיווניות}
+
+\section{מילים, מספרים ויחידות}
+המותג \en{AURA} מושק בחמישה גוונים, ביניהם \en{Golden Honey Glaze}
+ו-\en{Berry Crush Elixir}. גרסת התבנית היא \ltr{v0.1}, ומחיר היעד הוא
+\ltr{89.90 ₪} לשפופרת, או \ltr{\$24.99} בחנות המקוונת. שיעור ההמרה הצפוי
+הוא \ltr{2.5\%}, בטווח של \ltr{10--20} אלף צפיות, עם תקציב של
+\ltr{1,500} ש"ח. התאריך: \ltr{22.11.2026}. דוגמה ל-\en{GPT-4}: לא הפוך.
+
+\en{AURA} פותחת פסקה: הפסקה חייבת להישאר מימין לשמאל.
+
+\section{נוסחה עם עברית}
+\begin{equation}
+  S_j = \sum_{i=1}^{n} w_i \cdot c_{ij}, \qquad
+  R = P \times I \quad \mathheb{(ציון סיכון)}
+\end{equation}
+
+\section{טבלה}
+טבלה~\ref{tab:test} בודקת שהעמודה הראשונה מימין.
+\begin{table}[h]
+  \caption{גווני \en{AURA}: העמודה הראשונה מימין}\label{tab:test}
+  \centering\auratablestripes
+  \begin{tabular}{rrr}
+    \headrow \hcell{גוון} & \hcell{שם באנגלית} & \hcell{צבע} \\
+    דבש טהור & \en{Golden Honey Glaze} & \ltr{\#E69217} \\
+    אפרסק עסיסי & \en{Velvet Peach Nectar} & \ltr{\#F26C4B} \\
+    פירות יער & \en{Berry Crush Elixir} & \ltr{\#D42663} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\section{תיבות}
+\begin{insightbox}[בפרויקט שלנו]
+תיבת תובנה עם \en{TikZ} ומספר \ltr{3.14} בתוכה.
+\end{insightbox}
+\begin{definitionbox}
+\en{SOM}: נתח השוק שאפשר להשיג בפועל.
+\end{definitionbox}
+\begin{warningbox}
+סיכון עם ציון \ltr{R = 16}: דורש תוכנית מגירה.
+\end{warningbox}
+\begin{keymessage}
+\en{AURA} מתחילה בשוק מקוון, ומתרחבת לקמעונאות אחרי \ltr{6} חודשים.
+\end{keymessage}
+\end{document}
