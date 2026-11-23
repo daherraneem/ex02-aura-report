@@ -1,116 +1,124 @@
-"""Figure: Price vs. Sensory-Brand-Accessibility Value Positioning Map in Israel.
+"""Chapter 4 figure: Price vs. Non-Price Positioning Map in Israel (incl. Mid-Tier Brands).
 
-Run from the project root:  python figures/price_positioning.py
-Output: figures/price_positioning.pdf
-
-Prices are real verified Israeli consumer prices (ILS, Nov 2026) with min-max ranges.
-Value index (1-10) is the sum of four transparent 0-2.5 criteria documented in Ch. 4.
+Updated after expert committee review (F4 / BS-04 / BS-05 / MP-09 / DL-05):
+- Includes 3 verified mid-tier brands sold in Israel (NYX, Maybelline, Clinique)
+  alongside discount (Essence) and imported premium (Rhode, Rare, Fenty, Benefit).
+- Y-axis is a strictly non-price subjective expert positioning index (no price/ml
+  on both axes).
+- Plots AURA as a target range (7.4-8.4) rather than an unproven single top point.
+- Sized to printed text width (~6.4 in) with legible fonts (>= 8.5 pt) and Hebrew ש"ח.
 """
-import matplotlib.patches as patches
 import matplotlib.pyplot as plt
-from matplotlib.lines import Line2D
+import matplotlib.patches as mpatches
+from aura_style import AURA, SHADES, heb, apply_style, save
 
-from aura_style import AURA, SHADES, apply_style, heb, save
+apply_style()
 
-# (name, mid_price_ils, low_ils, high_ils, value_score, is_local, color, dx, dy, ha)
-COMPETITORS = [
-    ("Essence\n(What a Tint!)", 15, 10, 20, 4.8, True, AURA["muted"], 4, 0.62, "center"),
-    ("Benefit\n(Benetint 6ml)", 112, 99, 125, 4.8, False, SHADES["cocoa"], 0, -0.65, "center"),
-    ("Rare Beauty\n(Soft Pinch)", 125, 110, 140, 6.5, False, SHADES["peach"], -10, -0.68, "center"),
-    ("Fenty Beauty\n(Poutsicle)", 145, 130, 160, 6.6, False, SHADES["ruby"], 10, 0.56, "center"),
-    ("Rhode\n(Peptide Lip Tint)", 165, 155, 175, 7.9, False, AURA["plum"], -4, 0.55, "center"),
+# Verified Israeli prices (min, mid, max in ILS) vs Non-Price Expert Index (Table 4.3, 0-10)
+# Index = Culinary Narrative (2.5) + Moisturizing Formula (2.5) + Social Currency (2.5) + Local Trial/Availability (2.5)
+competitors = [
+    # (name, p_min, p_mid, p_max, score, channel_type, dx, dy, ha)
+    ("Essence\n(What a Tint!)", 14, 15, 16, 4.3, "local", 4, -0.55, "left"),
+    ("NYX\n(Fat Oil)", 38, 40, 42, 6.2, "local", 4, 0.28, "left"),
+    ("Maybelline\n(Teddy Tint)", 46, 52, 58, 6.0, "local", 5, -0.62, "left"),
+    ("Clinique\n(Black Honey)", 77, 96, 115, 7.0, "local", 2, -0.45, "center"),
+    ("Benefit\n(Benetint)", 99, 112, 125, 4.4, "remote", 0, -0.66, "center"),
+    ("Rare Beauty\n(Soft Pinch)", 110, 125, 140, 6.3, "remote", 0, -0.68, "center"),
+    ("Fenty Beauty\n(Poutsicle)", 130, 145, 160, 6.1, "remote", 0, 0.42, "center"),
+    ("Rhode\n(Peptide Tint)", 155, 165, 175, 7.9, "remote", -4, 0.36, "right"),
 ]
 
-AURA_POINT = ("AURA (יעד השקה)", 69, 8.8)
+fig, ax = plt.subplots(figsize=(6.5, 4.35))
+plt.subplots_adjust(left=0.11, right=0.97, top=0.89, bottom=0.23)
 
+# Shaded Masstige target zone (45-95 ILS)
+zone = mpatches.FancyBboxPatch(
+    (45, 7.10),
+    48,
+    2.02,
+    boxstyle="round,pad=0.10",
+    facecolor=AURA["cream"],
+    edgecolor=AURA["gold"],
+    linewidth=1.2,
+    linestyle="--",
+    zorder=1,
+)
+ax.add_patch(zone)
+ax.text(
+    69,
+    9.02,
+    heb("אזור יעד Masstige מקומי (45–95 ש\"ח)"),
+    ha="center",
+    va="top",
+    fontsize=8.2,
+    fontweight="bold",
+    color=SHADES["cocoa"],
+    zorder=2,
+)
 
-def main() -> None:
-    apply_style()
-
-    fig, ax = plt.subplots(figsize=(6.9, 4.65))
-
-    # Shaded Masstige White Space opportunity zone (generous padding inside)
-    opp_box = patches.FancyBboxPatch(
-        (38, 7.15), 62, 2.75,
-        boxstyle="round,pad=0.12,rounding_size=0.35",
-        facecolor=AURA["cream"], edgecolor=AURA["gold"],
-        linewidth=1.5, linestyle="--", alpha=0.88, zorder=1,
-    )
-    ax.add_patch(opp_box)
+# Plot competitors
+for name, pmin, pmid, pmax, sc, ctype, dx, dy, ha in competitors:
+    col = SHADES["honey"] if ctype == "local" else AURA["muted"]
+    mk = "o" if ctype == "local" else "D"
+    ax.plot([pmin, pmax], [sc, sc], color=col, linewidth=1.6, alpha=0.6, zorder=3)
+    ax.scatter(pmid, sc, s=46, color=col, marker=mk, edgecolor="white", linewidth=0.7, zorder=4)
     ax.text(
-        69, 7.38, heb("חלל הזדמנות: Masstige מקומי"),
-        ha="center", va="bottom", fontsize=9.2, fontweight="bold",
-        color=AURA["plum"], zorder=2,
+        pmid + dx,
+        sc + dy,
+        name,
+        fontsize=7.6,
+        ha=ha,
+        va="center",
+        color=AURA["ink"],
+        linespacing=1.05,
+        zorder=5,
     )
 
-    # Subtle background grid
-    ax.grid(True, linestyle=":", color=AURA["grid"], linewidth=0.9, zorder=0)
+# Plot AURA as a vertical target range (7.4 - 8.4) at 69 ILS
+ax.plot([69, 69], [7.4, 8.4], color=SHADES["berry"], linewidth=4.2, solid_capstyle="round", zorder=5)
+ax.scatter(69, 7.9, s=115, color=SHADES["berry"], marker="*", edgecolor=AURA["plum"], linewidth=0.7, zorder=6)
+ax.text(
+    65.5,
+    7.90,
+    heb("AURA\n69 ש\"ח\n(7.4–8.4)"),
+    ha="right",
+    va="center",
+    fontsize=7.9,
+    fontweight="bold",
+    color=AURA["plum"],
+    linespacing=1.1,
+    zorder=6,
+)
 
-    # Plot competitors with verified Israeli price range bars
-    for name, mid, low, high, score, is_local, color, dx, dy, ha in COMPETITORS:
-        xerr = [[mid - low], [high - mid]]
-        ax.errorbar(
-            mid, score, xerr=xerr, fmt="none",
-            ecolor=color, elinewidth=1.8, capsize=3.5, alpha=0.65, zorder=3,
-        )
-        marker = "o" if is_local else "D"
-        ax.scatter(
-            mid, score, s=95, marker=marker, color=color,
-            edgecolors="white", linewidths=1.3, zorder=4,
-        )
-        price_lbl = f"₪{low}–{high}" if low != high else f"₪{mid}"
-        ax.text(
-            mid + dx, score + dy,
-            f"{name}\n{price_lbl}",
-            ha=ha, va="center", fontsize=8.8, color=AURA["ink"],
-            linespacing=1.15, zorder=5,
-        )
+ax.set_xlim(0, 185)
+ax.set_ylim(3.2, 9.35)
+ax.set_xlabel(heb("מחיר קמעונאי בפועל לצרכנית בישראל (ש\"ח, כולל מע\"מ)"), fontsize=9.2)
+ax.set_ylabel(heb("מדד מיצוב חושי-מותגי וזמינות (הערכת צוות, 0–10)"), fontsize=9.0)
+ax.set_title(
+    heb("מפת מיצוב: מחיר בישראל מול מדד ערך לא-מחירי (כולל מותגי ביניים)"),
+    fontsize=10.2,
+    fontweight="bold",
+    color=AURA["plum"],
+    pad=10,
+)
+ax.grid(True, color=AURA["grid"], linestyle="--", linewidth=0.65)
+ax.set_axisbelow(True)
 
-    # Plot AURA with soft golden aura halo
-    ax.scatter(
-        AURA_POINT[1], AURA_POINT[2], s=600, color=AURA["gold"],
-        alpha=0.28, edgecolors="none", zorder=4,
-    )
-    ax.scatter(
-        AURA_POINT[1], AURA_POINT[2], s=260, color=SHADES["berry"],
-        marker="*", edgecolors=AURA["plum"], linewidths=0.9, zorder=5,
-    )
-    ax.text(
-        AURA_POINT[1], AURA_POINT[2] + 0.30,
-        heb("AURA (יעד השקה)") + "\n₪69",
-        ha="center", va="bottom", fontsize=9.8, fontweight="bold",
-        color=SHADES["berry"], linespacing=1.15, zorder=6,
-    )
+# Clean legend below x-axis
+handles = [
+    plt.Line2D([0], [0], marker="o", color="w", markerfacecolor=SHADES["honey"], markersize=7, label=heb("זמינות מקומית בפארם / אתר ישראלי")),
+    plt.Line2D([0], [0], marker="D", color="w", markerfacecolor=AURA["muted"], markersize=6.5, label=heb("יבוא מקביל / חו\"ל (ללא התנסות מקומית)")),
+    plt.Line2D([0], [0], marker="*", color=SHADES["berry"], markerfacecolor=SHADES["berry"], markeredgecolor=AURA["plum"], markersize=9, lw=2.5, label=heb("AURA — טווח יעד מתוכנן (7.4–8.4)")),
+]
+ax.legend(
+    handles=handles,
+    loc="upper center",
+    bbox_to_anchor=(0.48, -0.18),
+    ncol=2,
+    frameon=False,
+    fontsize=7.9,
+    handlelength=1.4,
+    columnspacing=1.0,
+)
 
-    # Axes styling
-    ax.set_xlim(0, 195)
-    ax.set_ylim(3.5, 10.25)
-    ax.set_xlabel(heb('מחיר בפועל לצרכנית בישראל (ש"ח)'), fontsize=11, labelpad=6)
-    ax.set_ylabel(heb("מדד ערך חושי-מותגי ונגישות (1–10)"), fontsize=11, labelpad=6)
-    ax.set_title(
-        heb("מיצוב AURA מול המתחרים: מחיר בישראל מול ערך כולל"),
-        loc="right", fontsize=12, fontweight="bold", color=AURA["plum"], pad=10,
-    )
-    ax.tick_params(labelsize=9.8)
-
-    # Legend cleanly below axes (guaranteed zero overlap with any data point)
-    legend_handles = [
-        Line2D([0], [0], marker="*", color="w", label=heb("AURA (יעד השקה, מקומי)"),
-               markerfacecolor=SHADES["berry"], markeredgecolor=AURA["plum"], markersize=11),
-        Line2D([0], [0], marker="o", color="w", label=heb("זמינות מקומית בפארם"),
-               markerfacecolor=AURA["muted"], markersize=8),
-        Line2D([0], [0], marker="D", color="w", label=heb("יבוא מקביל / משלוח מחו\"ל"),
-               markerfacecolor=AURA["plum"], markersize=7.5),
-        Line2D([0], [0], color=AURA["muted"], lw=1.8, label=heb("טווח מחיר מאומת בישראל")),
-    ]
-    ax.legend(
-        handles=legend_handles, loc="upper center", bbox_to_anchor=(0.5, -0.16),
-        ncol=2, frameon=True, facecolor="white", edgecolor=AURA["grid"],
-        fontsize=8.8, columnspacing=1.6, handletextpad=0.6,
-    )
-
-    save(fig, "price_positioning")
-
-
-if __name__ == "__main__":
-    main()
+save(fig, "price_positioning")

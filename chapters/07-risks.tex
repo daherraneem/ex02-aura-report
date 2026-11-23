@@ -1,107 +1,88 @@
 % =====================================================================
 %  Chapter 7: Risk management                     Page budget: 2 (pp. 35-36)
 %  Booklet (ch. 9): failure modes, probability x impact (R = P x I),
-%           colored risk matrix (TikZ), mitigation + contingency + residual
-%           risk for every R >= 12.
+%           colored risk matrix (TikZ), additional mitigation + contingency
+%           + justified residual risk for every R >= 12.
 %  Owner: Raghad (Antigravity) - only she edits this file
 % =====================================================================
 \chapter{ניהול סיכונים}
 \label{ch:risks}
 
-ניהול סיכונים שיטתי מבטיח כי תוכנית ההשקה מפרק~\ref{ch:workplan} תעמוד ביעדי
-פרק~\ref{ch:problem} גם תחת אי-ודאות תפעולית, רגולטורית ושיווקית. בהתאם לתקן
-\en{ISO 31000:2018}, לטכניקות ההערכה של \en{IEC 31010:2019} ולמדריך
-\en{PMBOK}~\cite{iso2018risk,iec2019risk,pmi2021pmbok}, כל מצב כשל מוערך לפי
-הסתברות ($P \in [1, 5]$) והשפעה ($I \in [1, 5]$) ליצירת ציון סיכון משולב
-$R = P \times I$, וכל סיכון שציונו $R \geq 12$ מחייב תוכנית מנע, תוכנית מגירה
-והערכת סיכון שיורי.
+ניהול סיכונים שיטתי מגן על תוכנית ההשקה (פרק~\ref{ch:workplan}) ועל יעדי
+פרק~\ref{ch:problem}. לפי תקן \en{ISO 31000:2018}, \en{IEC 31010:2019} ומדריך
+\en{PMBOK}~\cite{iso2018risk,iec2019risk,pmi2021pmbok}, כל סיכון מדורג בהסתברות
+($P \in [1, 5]$) ובהשפעה ($I \in [1, 5]$), $R = P \times I$; כל סיכון עם
+$R \geq 12$ מחייב מנע \textbf{נוסף} מעבר לבסיס, מגירה וסיכון שיורי מנומק.
 
 \section{זיהוי והערכת סיכונים}
 \label{sec:risks-assessment}
 
-זוהו שבעה סיכונים ממשיים המרכזיים להשקת \en{AURA} בחלופה ההיברידית, הממופים
-ישירות ליעדי \mbox{\en{G1--G5}}, לדרישות \en{REQ-01--REQ-09} (פרק~\ref{ch:problem})
-ולחבילות העבודה \en{WP1--WP6} (פרק~\ref{ch:workplan}). טבלה~\ref{tab:risk-register}
-מציגה את רישום הסיכונים, ואיור~\ref{fig:risk-matrix} ממפה אותם על מטריצת
-הסיכונים הצבעונית ($5 \times 5$).
+זוהו שמונה סיכונים מרכזיים להשקת \en{AURA}, הממופים ל-\mbox{\en{G1--G5}},
+ל-\en{REQ-01--REQ-11} ול-\en{WP1--WP6} --- כולל חיקוי מזון לפי הדירקטיבה
+האירופית \en{87/357/EEC}~\cite{eurlex1987foodimitation}, היגיינה בבר הטעימות,
+הצטרפות למרקטפלייס ותגובת מתחרים (טבלה~\ref{tab:risk-register}
+ואיור~\ref{fig:risk-matrix}).
 
 \begin{table}[htb]
-  \caption{רישום והערכת סיכונים להשקת \en{AURA} ($R = P \times I$, סולם \ltr{1--5})}
+  \caption[רישום והערכת סיכונים להשקת \en{AURA}]{רישום והערכת שמונה סיכונים להשקת \en{AURA} ($R = P \times I$, סולם \ltr{1--5})}
   \label{tab:risk-register}
   \centering\auratablestripes
-  \setlength{\tabcolsep}{3.8pt}
-  \scriptsize
-  \begin{tabular}{>{\raggedleft\arraybackslash}p{0.85cm} >{\raggedleft\arraybackslash}p{5.5cm} >{\raggedleft\arraybackslash}p{3.6cm} r r r}
-    \headrow \hcell{מזהה} & \hcell{תיאור הסיכון / מצב הכשל} & \hcell{יעדים, דרישות וחבילות מושפעות} & \hcell{\en{P}} & \hcell{\en{I}} & \hcell{\en{R}} \\
+  \setlength{\tabcolsep}{3pt}
+  \renewcommand{\arraystretch}{1.12}
+  \footnotesize
+  \begin{tabular}{>{\raggedleft\arraybackslash}p{0.75cm} >{\raggedleft\arraybackslash}p{6.2cm} >{\raggedleft\arraybackslash}p{3.2cm} r r r}
+    \headrow \hcell{מזהה} & \hcell{תיאור הסיכון / מצב הכשל} & \hcell{יעדים וחבילות} & \hcell{\en{P}} & \hcell{\en{I}} & \hcell{\en{R}} \\
     \en{R1} & רוויית שוק הביוטי ושחיקת קשב הצרכניות~\cite{mckinsey2025beauty} & \en{G1}, \en{G4}, \en{WP4--WP5} & \ltr{4} & \ltr{4} & \textbf{\ltr{16}} \\
-    \en{R2} & התייקרות עלות רכישת לקוחה (\en{CAC}) במדיה ממומנת~\cite{mckinsey2025beauty} & \en{G4}, תקציב \ltr{150} אלף ש"ח, \en{WP4--WP5} & \ltr{4} & \ltr{4} & \textbf{\ltr{16}} \\
-    \en{R3} & עיכוב בהודעות למשרד הבריאות או באספקת מלאי~\cite{ita2023israelcosmetics} & \en{REQ-01} (נתיב קריטי), \en{M3}, \en{WP1} & \ltr{3} & \ltr{5} & \textbf{\ltr{15}} \\
-    \en{R4} & עייפות מתוכן משפיעניות או הפרת סימון פרסומת~\cite{ravia2021influencers,evans2017disclosing} & \en{REQ-02}, \en{REQ-07}, \en{G2}, \en{WP2/WP4} & \ltr{4} & \ltr{3} & \textbf{\ltr{12}} \\
-    \en{R5} & ביקורות שליליות על מרקם, ניחוח או עמידות~\cite{cosmeticsbusiness2021sampling,krishna2012sensory} & \en{G3}, \en{G5}, \en{REQ-08}, \en{WP4--WP5} & \ltr{3} & \ltr{4} & \textbf{\ltr{12}} \\
-    \en{R6} & תקלה טכנית באתר ה-\en{D2C} או בסליקה ביום ההשקה & \en{REQ-03}, \en{G4}, \en{M4}, \en{WP3--WP4} & \ltr{2} & \ltr{4} & \ltr{8} \\
-    \en{R7} & תגובה אגרסיבית של מתחרים או חיקוי הקונספט הקולינרי & \en{G1}, \en{G4}, \en{WP5--WP6} & \ltr{2} & \ltr{3} & \ltr{6} \\
+    \en{R2} & התייקרות \en{CAC} במדיה ממומנת~\cite{mckinsey2025beauty} & \en{G4}, \en{P\&L}, \en{WP4--WP5} & \ltr{4} & \ltr{4} & \textbf{\ltr{16}} \\
+    \en{R3} & עיכוב ב-\en{REQ-01}, שינוי פורמולה מאוחר או עיכוב מלאי~\cite{ita2023israelcosmetics} & \en{REQ-01} (קריטי), \en{M3} & \ltr{3} & \ltr{5} & \textbf{\ltr{15}} \\
+    \en{R4} & עייפות מיוצרות, טענות אסורות או הפרת \en{REQ-02}~\cite{ravia2021influencers,evans2017disclosing} & \en{REQ-02/07}, \en{G2}, \en{WP4} & \ltr{4} & \ltr{3} & \textbf{\ltr{12}} \\
+    \en{R5} & חיקוי מזון (\en{87/357/EEC}), אלרגנים והיגיינה בבר~\cite{eurlex1987foodimitation} & \en{G3}, \en{G5}, \en{REQ-08} & \ltr{3} & \ltr{4} & \textbf{\ltr{12}} \\
+    \en{R6} & חיקוי קולינרי של מותג פארם או משלוח ישיר של \en{Rhode} & \en{G1}, \en{G4}, \en{WP5--WP6} & \ltr{3} & \ltr{4} & \textbf{\ltr{12}} \\
+    \en{R7} & דחיית הצטרפות למרקטפלייס או מבצע הסותר את \en{REQ-04} & \en{REQ-04}, \en{G4}, \en{WP1/WP4} & \ltr{3} & \ltr{4} & \textbf{\ltr{12}} \\
+    \en{R8} & תקלה טכנית באתר ה-\en{D2C} או בסליקה ביום ההשקה & \en{REQ-03}, \en{M4}, \en{WP3--WP4} & \ltr{2} & \ltr{4} & \ltr{8} \\
     \bottomrule
   \end{tabular}
 \end{table}
 
 \begin{figure}[htb]
   \begin{diagram}
-    \input{figures/tikz/risk_matrix}
+    \scalebox{0.92}{\input{figures/tikz/risk_matrix}}
   \end{diagram}
-  \caption{מטריצת הסיכונים הצבעונית ($5 \times 5$) להשקת \en{AURA}: חמשת הסיכונים
-    בתוך האזור המקווקו (\en{R1--R5}, $R \geq 12$) מחייבים תוכנית הפחתה ומגירה}
+  \caption[מטריצת הסיכונים הצבעונית ($5 \times 5$) להשקת \en{AURA}]{מטריצת הסיכונים ($5 \times 5$): \en{R1--R7} ($R \geq 12$, אזור מקווקו) מחייבים מנע נוסף ומגירה}
   \label{fig:risk-matrix}
 \end{figure}
 
 \section{תוכנית הפחתה ומגירה לסיכונים גבוהים}
 \label{sec:risks-mitigation}
 
-מן המיפוי באיור~\ref{fig:risk-matrix} עולה כי חמישה סיכונים חוצים את הסף
-$R \geq 12$: סיכון \en{R3} (\ltr{15}) מאיים ישירות על \textbf{הנתיב הקריטי}
-(עיכוב ב-\en{REQ-01} דוחה את שער \en{M3} ואת פתיחת המכירות בחודש \ltr{4}, שכן
-אין מרווח גמישות~\cite{kelley1959critical,ita2023israelcosmetics}), ואילו
-\en{R1}, \en{R2}, \en{R4} ו-\en{R5} מאיימים על יעדי המודעות, ההמרה והמכירות
-(\en{G1--G5}) ועל מסגרת התקציב של \ltr{150} אלף ש"ח. לעומתם, \en{R6} (\ltr{8})
-מטופל בבדיקות עומס וב-\ltr{10} הזמנות ניסיון בחודש \ltr{3} (\en{REQ-03}),
-ו-\en{R7} (\ltr{6}) במעקב מתחרים ובהשקת גוון עונתי מוגבל (\en{REQ-11}).
-טבלה~\ref{tab:risk-mitigation} מפרטת לכל סיכון עם $R \geq 12$ את פעולת המנע
-(להפחתת $P$), את תוכנית המגירה (להקטנת $I$ במקרה מימוש) ואת הסיכון השיורי.
+שבעה סיכונים חוצים את הסף $R \geq 12$ (איור~\ref{fig:risk-matrix}), ובראשם
+\en{R3} (\ltr{15}) על הנתיב הקריטי~\cite{kelley1959critical}; \en{R8} (\ltr{8})
+מטופל ב-\en{REQ-03}. טבלה~\ref{tab:risk-mitigation} מפרטת \textbf{צעדי מנע
+נוספים} (מעבר לבסיס), תוכנית מגירה וסיכון שיורי מנומק.
 
 \begin{table}[htb]
-  \caption{תוכנית מנע, תוכנית מגירה וסיכון שיורי לכל סיכון עם $R \geq 12$}
+  \caption[תוכנית מנע נוספת, מגירה וסיכון שיורי לכל סיכון עם $R \geq 12$]{צעדי מנע נוספים (מעבר לבסיס), מגירה וסיכון שיורי מנומק ל-\en{R1--R7}}
   \label{tab:risk-mitigation}
   \centering\auratablestripes
-  \setlength{\tabcolsep}{3.8pt}
-  \scriptsize
-  \begin{tabular}{>{\raggedleft\arraybackslash}p{0.85cm} r >{\raggedleft\arraybackslash}p{5.1cm} >{\raggedleft\arraybackslash}p{5.0cm} >{\raggedleft\arraybackslash}p{1.65cm}}
-    \headrow \hcell{מזהה} & \hcell{\en{R} מקורי} & \hcell{פעולת מנע (הפחתת \en{P})} & \hcell{תוכנית מגירה (הקטנת \en{I})} & \hcell{סיכון שיורי} \\
-    \en{R1} & \textbf{\ltr{16}} &
-      חידוד הבידול הקולינרי, הפעלת \ltr{3} ברי טעימות בקמפוסים (\en{G3}) וכרטיס ``קבלת קפה'' שיתופי מ-\en{AI} &
-      הסטת תקציב פרסום לאתגר \en{UGC} ממוקד (\en{REQ-10}) ולשת"פי עגלות קפה נוספים בקמפוסים &
-      \ltr{2$\times$3 = 6} \\
-    \en{R2} & \textbf{\ltr{16}} &
-      גיוון מקורות תנועה מעבר לממומן: \ltr{20--30} מיקרו-משפיעניות (\en{REQ-07}), תוכן אורגני ודוכני קמפוס &
-      קביעת תקרת \en{CAC}, הקפאת מודעות חלשות בחודש \ltr{5} והתמקדות בגוונים המובילים וב-\en{CRM} צד אפס &
-      \ltr{2$\times$3 = 6} \\
-    \en{R3} & \textbf{\ltr{15}} &
-      עבודה עם מעבדה מורשית בתקינה אירופית, הגשת \en{REQ-01} כבר בחודש \ltr{1} (\en{WP1}) ומלאי ביטחון &
-      השקה מדורגת בחודש \ltr{4} עם הגוונים שכבר אושרו והשלמת הגוונים המעוכבים כהשקה שנייה &
-      \ltr{1$\times$4 = 4} \\
-    \en{R4} & \textbf{\ltr{12}} &
-      בחירת יוצרות קטנות (\ltr{5--30} אלף עוקבות) עם חופש יצירתי, ובקרה שבועית על סימון פרסומת (\en{REQ-02}) &
-      החלפת יוצרות חלשות מרשימת גיבוי של \ltr{5} יוצרות וחיזוק ביקורות אורגניות מרוכשות מאומתות &
-      \ltr{2$\times$2 = 4} \\
-    \en{R5} & \textbf{\ltr{12}} &
-      קבוצות מיקוד של סטודנטיות בחודשים \ltr{1--2} לטיוב מרקם, ניחוח ועמידות לפני מילוי המלאי &
-      נוהל תגובה שקוף ברשתות, אחריות החלפה מהירה ועדכון פורמולה כבר באצוות הייצור השנייה &
-      \ltr{2$\times$2 = 4} \\
+  \setlength{\tabcolsep}{2.8pt}
+  \renewcommand{\arraystretch}{1.10}
+  \footnotesize
+  \begin{tabular}{>{\raggedleft\arraybackslash}p{0.6cm} r >{\raggedleft\arraybackslash}p{4.6cm} >{\raggedleft\arraybackslash}p{4.3cm} >{\raggedleft\arraybackslash}p{3.2cm}}
+    \headrow \hcell{מזהה} & \hcell{\en{R}} & \hcell{מנע נוסף (הפחתת \en{P})} & \hcell{תוכנית מגירה (הקטנת \en{I})} & \hcell{שיורי ונימוק} \\
+    \en{R1} & \textbf{\ltr{16}} & בדיקת מסר ומחיר בסקר הבסיס (\en{REQ-09}) לפני מרץ & בשער \en{M4}: הסטת ממומן ל-\en{UGC} (\en{REQ-10}) ולמארזי \en{D2C} & \ltr{3$\times$3 = 9} (רוויה חיצונית נותרת) \\
+    \en{R2} & \textbf{\ltr{16}} & תקרת \en{CAC} שבועית ובדיקת \en{A/B} של שאלון הגוון & הקפאת מודעות חורגות ב-\en{M4} והתמקדות ב-\en{CRM} & \ltr{3$\times$3 = 9} (מחירי מדיה תנודתיים) \\
+    \en{R3} & \textbf{\ltr{15}} & נעילת פורמולה בדצמ' לפני \en{REQ-01} ויועץ (\ltr{10}K) & השקה מדורגת בחודש \ltr{4} בגוונים שאושרו לשמירת \en{M3} & \ltr{2$\times$4 = 8} (תלות במשרד הבריאות) \\
+    \en{R4} & \textbf{\ltr{12}} & תדריך טענות אסורות ובקרת \en{REQ-02} לפני פרסום & החלפה מרשימת גיבוי (\ltr{5} יוצרות) ותיקון תוך \ltr{24} ש' & \ltr{2$\times$3 = 6} (אכיפה מוקדמת) \\
+    \en{R5} & \textbf{\ltr{12}} & אריזת תמרוק לא-מזונית (\en{87/357/EEC}), דוגמיות אטומות, הסעדה מאושרת ואלרגנים & עצירת הגשת מזון ומעבר לדוגמיות אטומות + החלפה מהירה & \ltr{2$\times$3 = 6} (היגיינה מבוקרת) \\
+    \en{R6} & \textbf{\ltr{12}} & קהילת \en{CRM} ב-\en{D2C}, הוכחת טענות וגוון עונתי (\en{REQ-11}) & מול חיקוי ב-\ltr{30} ש"ח: קידום מארז \ltr{299} ש"ח בלי הורדת מחירון & \ltr{2$\times$3 = 6} (לא ניתן לחסום חיקוי) \\
+    \en{R7} & \textbf{\ltr{12}} & פנייה במקביל לשתי פלטפורמות וסעיף \en{REQ-04}; קופונים ב-\en{D2C} בלבד & דחייה: הפניית \ltr{35\%} היעד ל-\en{D2C} ולמשווק בוטיק חלופי & \ltr{2$\times$3 = 6} (\en{D2C} פעיל עצמאית) \\
     \bottomrule
   \end{tabular}
 \end{table}
 
 \begin{keymessage}[המסר המרכזי מניהול הסיכונים]
-יישום תוכנית ההפחתה בטבלה~\ref{tab:risk-mitigation} מוריד את רמת החשיפה המרבית
-מציון \ltr{16} לציון שיורי של \ltr{6} בלבד, ומקטין את סיכון הנתיב הקריטי
-הרגולטורי (\en{R3}) מ-\ltr{15} ל-\ltr{4}. בכך מובטחת מוכנות תפעולית ומבוקרת
-ליציאה לביצוע ההשקה, כפי שיוסכם בפרק~\ref{ch:summary}.
+צעדי המנע הנוספים ותוכניות המגירה בטבלה~\ref{tab:risk-mitigation} מצמצמים את
+החשיפה המרבית מ-\ltr{16} לציון שיורי ריאלי של \ltr{9} (ואת \en{R3} בנתיב
+הקריטי מ-\ltr{15} ל-\ltr{8}), ומכסים את סיכוני חיקוי המזון, ההיגיינה, המתחרים
+והמרקטפלייס. בכך משתפרת המוכנות התפעולית, כפי שיסוכם בפרק~\ref{ch:summary}.
 \end{keymessage}

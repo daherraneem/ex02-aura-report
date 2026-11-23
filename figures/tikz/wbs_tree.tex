@@ -1,43 +1,40 @@
-% WBS Tree Diagram for AURA 6-Month Launch (Alternative 3: Omnichannel Hybrid)
-% Used inside \begin{diagram} (LTR); Hebrew runs in \texthebrew{...},
-% English in \textenglish{...}, numbers in \LR{...}.
-% Width constrained to <= 15.0 cm to fit cleanly inside A4 margins.
+% WBS Tree Diagram for AURA 6-Month Launch (Dec 2026 - May 2027)
+% Updated after expert committee review (F5 / BS-06 / BS-07 / BS-12):
+% - Sequence: Formula freeze + focus groups (Month 1) -> REQ-01 submission &
+%   3,000-unit + 1,500-mini production (Month 2) -> Approvals & tests (Month 3).
+% - Academic calendar months anchored; trademark check in WP1; M4 commercial gate.
 \begin{tikzpicture}[
     root/.style={rectangle, rounded corners=6pt, draw=AuraPlum, line width=1.1pt,
-      fill=AuraPlum, text=white, minimum width=9.6cm, minimum height=0.88cm,
+      fill=AuraPlum, text=white, minimum width=10.6cm, minimum height=0.88cm,
       align=center, font=\sffamily\small\bfseries, inner sep=5pt},
     wp/.style={rectangle, rounded corners=4pt, draw=#1, line width=0.95pt,
-      fill=#1!16, text=AuraPlum, minimum width=2.28cm, minimum height=1.08cm,
+      fill=#1!16, text=AuraPlum, minimum width=2.28cm, minimum height=1.12cm,
       text width=2.16cm, align=center, font=\sffamily\scriptsize\bfseries, inner sep=3pt},
     leaf/.style={rectangle, rounded corners=3pt, draw=#1!75, line width=0.65pt,
-      fill=white, text=AuraInk, minimum width=2.28cm, minimum height=0.72cm,
+      fill=white, text=AuraInk, minimum width=2.28cm, minimum height=0.74cm,
       text width=2.16cm, align=center, font=\sffamily\fontsize{6.6}{7.8}\selectfont, inner sep=2.5pt},
     edge/.style={draw=AuraGold!90!AuraCocoa, line width=0.85pt},
     subedge/.style={draw=AuraMuted!80, line width=0.7pt}
   ]
 
-  % Root node (Level 0)
   \node[root] (R) at (0, 0)
-    {\texthebrew{השקת \textenglish{AURA} בישראל (\LR{6} חודשים · תקציב \LR{150} אלף ש"ח)}};
+    {\texthebrew{השקת \textenglish{AURA} (דצמ' \LR{2026} -- מאי \LR{2027} · \LR{150} אלף ש"ח · יעד \LR{2,200} יח')}};
 
-  % Horizontal bus under Root
   \coordinate (bus) at (0, -0.82);
   \draw[edge] (R.south) -- (bus);
 
-  % Level 1: 6 Work Packages ordered Right-to-Left (WP1 on the right .. WP6 on the left)
-  % x positions: +6.25, +3.75, +1.25, -1.25, -3.75, -6.25 (total span 12.5 + 2.28 = 14.78 cm)
   \foreach \x/\id/\col/\title/\dA/\dB/\dC in {
-      6.25/1/AuraHoney/{חודש \LR{1}\\\textenglish{WP1}: תשתית\\ורגולציה}/{ספר מותג ואריזות\\\LR{5} גוונים}/{הגשת \textenglish{REQ-01}\\משרד הבריאות}/{הקמת אתר \textenglish{D2C}\\ומרקטפלייס},
-      3.75/2/AuraPeach/{חודש \LR{2}\\\textenglish{WP2}: תוכן\\ושותפויות}/{צילומי \textenglish{ASMR}\\ובנק תוכן}/{גיוס \LR{20--30}\\מיקרו-משפיעניות}/{\textenglish{AI Sommelier}\\ואישורי \LR{3} קמפוסים},
-      1.25/3/AuraRuby/{חודש \LR{3}\\\textenglish{WP3}: בדיקות\\וקדם-השקה}/{אישור \textenglish{REQ-01}\\\LR{5/5} גוונים}/{\LR{10} הזמנות ניסיון\\(\textenglish{REQ-03})}/{טיזרים, המתנה\\וסקר בסיס (\textenglish{REQ-09})},
-     -1.25/4/AuraBerry/{חודש \LR{4}\\\textenglish{WP4}: השקה\\(\textenglish{Go-Live})}/{פתיחת מכירות\\\textenglish{D2C} ומרקטפלייס}/{גל יוצרות וקודי\\קופון (\textenglish{REQ-06})}/{ברי טעימות \LR{1--2}\\וקמפיין פתיחה},
-     -3.75/5/AuraCocoa/{חודש \LR{5}\\\textenglish{WP5}: שיפור\\והרחבה}/{בר טעימות \LR{3}\\(\LR{3,000} דוגמיות)}/{אופטימיזציית \textenglish{CAC}\\והסטת תקציב}/{אתגר \textenglish{UGC} ויעד\\\LR{1M} צפיות (\textenglish{G2})},
-     -6.25/6/AuraPlum/{חודש \LR{6}\\\textenglish{WP6}: שימור\\וסגירה}/{מארזי טעימות\\ומסעות \textenglish{CRM}}/{סקר מודעות מסכם\\(\textenglish{G1}, \textenglish{REQ-09})}/{דוח \textenglish{ROI} סופי\\ותוכנית שנה \LR{2}}} {
-    \node[wp=\col] (wp\id) at (\x, -1.78) {\texthebrew{\title}};
+      6.25/1/AuraHoney/{דצמ' (ח' \LR{1})\\\textenglish{WP1}: פורמולה\\ומיתוג}/{נעילת פורמולה\\וקבוצות מיקוד}/{בדיקת סימן מסחר\\וספר מותג}/{הקמת \textenglish{D2C} ובקשת\\מרקטפלייס},
+      3.75/2/AuraPeach/{ינו' (ח' \LR{2})\\\textenglish{WP2}: רגולציה,\\ייצור ותוכן}/{הגשת \textenglish{REQ-01}\\\LR{5/5} גוונים}/{ייצור \LR{3,000} יח'\\+ \LR{1,500} מיני}/{תוכן, \LR{20--30} יוצרות\\ואישורי קמפוס},
+      1.25/3/AuraRuby/{פבר' (ח' \LR{3})\\\textenglish{WP3}: אישורים\\וקדם-השקה}/{אישור \textenglish{REQ-01}\\וקליטת מלאי}/{\LR{10} הזמנות ניסיון\\(\textenglish{REQ-03})}/{טיזרים, המתנה\\וסקר בסיס (\textenglish{REQ-09})},
+     -1.25/4/AuraBerry/{מרץ (ח' \LR{4})\\\textenglish{WP4}: השקה\\(סמסטר ב')}/{פתיחת \textenglish{D2C}\\ומרקטפלייס}/{גל יוצרות וקודי\\\textenglish{D2C} (\textenglish{REQ-06})}/{ברי טעימות \LR{1--2}\\ושער מסחרי \textenglish{M4}},
+     -3.75/5/AuraCocoa/{אפר' (ח' \LR{5})\\\textenglish{WP5}: שיפור\\והרחבה}/{בר טעימות \LR{3}\\(\LR{1,500} דוגמיות)}/{הסטת מדיה לשני\\הגוונים המובילים}/{אתגר \textenglish{UGC} ויעד\\צפיות (\textenglish{G2})},
+     -6.25/6/AuraPlum/{מאי (ח' \LR{6})\\\textenglish{WP6}: שימור\\וסגירה}/{מארזי טעימות\\ומסעות \textenglish{CRM}}/{סקר מודעות מסכם\\(\textenglish{G1}, \textenglish{REQ-09})}/{דוח \textenglish{P\&L} ותוכנית\\איזון לחודשים \LR{7--12}}} {
+    \node[wp=\col] (wp\id) at (\x, -1.80) {\texthebrew{\title}};
     \draw[edge] (bus) -| (wp\id.north);
-    \node[leaf=\col] (a\id) at (\x, -3.02) {\texthebrew{\dA}};
-    \node[leaf=\col] (b\id) at (\x, -3.96) {\texthebrew{\dB}};
-    \node[leaf=\col] (c\id) at (\x, -4.90) {\texthebrew{\dC}};
+    \node[leaf=\col] (a\id) at (\x, -3.06) {\texthebrew{\dA}};
+    \node[leaf=\col] (b\id) at (\x, -4.02) {\texthebrew{\dB}};
+    \node[leaf=\col] (c\id) at (\x, -4.98) {\texthebrew{\dC}};
     \draw[subedge] (wp\id.south) -- (a\id.north);
     \draw[subedge] (a\id.south) -- (b\id.north);
     \draw[subedge] (b\id.south) -- (c\id.north);
