@@ -1,0 +1,92 @@
+% Chosen Launch Architecture (Alternative 3: Omnichannel Hybrid)
+% Used inside \begin{diagram} (LTR); Hebrew runs use \texthebrew{...},
+% English phrases use \textenglish{...}, and numbers/ranges use \LR{...}
+% so BiDi ordering is 100% exact inside every box.
+\begin{tikzpicture}[
+    layer/.style={rectangle, rounded corners=6pt, draw=#1!80, line width=0.9pt,
+      fill=#1!7},
+    ltag/.style={rectangle, rounded corners=3pt, fill=#1, text=white,
+      font=\sffamily\scriptsize\bfseries, inner xsep=6pt, inner ysep=2.2pt},
+    box/.style={rectangle, rounded corners=4pt, draw=#1, line width=0.85pt,
+      fill=white, minimum height=1.18cm, align=center,
+      font=\sffamily\footnotesize, text=AuraInk, inner sep=4pt},
+    corebox/.style={rectangle, rounded corners=4pt, draw=#1, line width=1.0pt,
+      fill=white, minimum height=1.22cm, align=center,
+      font=\sffamily\footnotesize, text=AuraPlum, inner sep=4.5pt},
+    arr/.style={-{Stealth[length=5.5pt,width=4.5pt]}, AuraPlum!85, line width=0.95pt},
+    fbarr/.style={-{Stealth[length=5.5pt,width=4.5pt]}, AuraGold!90!AuraCocoa,
+      line width=1.1pt, dashed}
+  ]
+
+  % =================================================================
+  % 1. BACKGROUND LAYER FRAMES (drawn FIRST so inner boxes stay visible)
+  % =================================================================
+  \draw[layer=AuraPeach] (-6.30, -0.82) rectangle (6.30, 0.96);
+  \node[ltag=AuraPeach, anchor=east] at (6.15, 0.96)
+    {\texthebrew{שכבה \LR{1}: חשיפה ותנועה (חודשים \LR{2--5})}};
+
+  \draw[layer=AuraBerry] (-6.30, -3.48) rectangle (6.30, -1.56);
+  \node[ltag=AuraBerry, anchor=east] at (6.15, -1.56)
+    {\texthebrew{שכבה \LR{2}: גשר ההתנסות הפיג'יטלי (פתרון חסם ההתנסות)}};
+
+  \draw[layer=AuraHoney] (-6.30, -6.10) rectangle (6.30, -4.22);
+  \node[ltag=AuraHoney, anchor=east] at (6.15, -4.22)
+    {\texthebrew{שכבה \LR{3}: המרה ואספקה דו-ערוצית (יעד \LR{6} חודשים: \LR{255} אלף ש"ח)}};
+
+  \draw[layer=AuraPlum] (-6.30, -8.38) rectangle (6.30, -6.82);
+  \node[ltag=AuraPlum, anchor=east] at (6.15, -6.82)
+    {\texthebrew{שכבה \LR{4}: נתונים, אופטימיזציה ושימור}};
+
+  % =================================================================
+  % 2. INNER CONTENT BOXES (drawn ON TOP of frames)
+  % =================================================================
+  % Layer 1 nodes
+  \node[box=AuraPeach, text width=3.65cm] (l1r) at (4.15, -0.02)
+    {\textbf{\texthebrew{מיקרו-משפיעניות}}\\[2pt]\scriptsize\texthebrew{\LR{20--30} יוצרות סטודנטיאליות}\\[-1pt]\scriptsize\texthebrew{ב-\textenglish{TikTok} וב-\textenglish{Instagram}}};
+  \node[box=AuraPeach, text width=3.65cm] (l1m) at (0, -0.02)
+    {\textbf{\texthebrew{תוכן חושי ו-\textenglish{ASMR}}}\\[2pt]\scriptsize\texthebrew{קמפיין קולינרי חם}\\[-1pt]\scriptsize\texthebrew{לחמשת גווני המזון}};
+  \node[box=AuraPeach, text width=3.65cm] (l1l) at (-4.15, -0.02)
+    {\textbf{\texthebrew{ממומן ורימרקטינג}}\\[2pt]\scriptsize\texthebrew{קמפיין חודשים \LR{4--5}}\\[-1pt]\scriptsize\texthebrew{ואופטימיזציית \textenglish{CAC}}};
+
+  % Layer 2 nodes (Phygital Bridge)
+  \node[corebox=AuraBerry, text width=5.55cm] (l2r) at (3.15, -2.62)
+    {\textbf{\texthebrew{פיזי: \LR{3} ברי טעימות בקמפוסים}}\\[2pt]\scriptsize\texthebrew{טעימת \LR{5} טעמים אמיתיים $\leftarrow$ התנסות בגוון תואם}\\[-1pt]\scriptsize\texthebrew{תיעוד \textenglish{UGC} אורגני וקוד \textenglish{QR} לרכישה מהירה}};
+  \node[corebox=AuraBerry, text width=5.55cm] (l2l) at (-3.15, -2.62)
+    {\textbf{\texthebrew{דיגיטלי: \textenglish{AI Flavor-Sommelier}}}\\[2pt]\scriptsize\texthebrew{שאלון קולינרי ב-\LR{3} שאלות באתר וב-\textenglish{Instagram}}\\[-1pt]\scriptsize\texthebrew{המלצת גוון חתימה + כרטיס קבלה לשיתוף בסטורי}};
+
+  % Layer 3 nodes (Conversion Channels - crisp single-line headers, plenty of clearance)
+  \node[box=AuraHoney, text width=3.65cm] (l3r) at (4.15, -5.26)
+    {\textbf{\texthebrew{חנות \textenglish{D2C} (\LR{50\%})}}\\[2pt]\scriptsize\texthebrew{מארזי \LR{5} גוונים (\LR{299} ש"ח)}\\[-1pt]\scriptsize\texthebrew{שולי רווח מלאים ו-\textenglish{AOV} גבוה}};
+  \node[box=AuraHoney, text width=3.65cm] (l3m) at (0, -5.26)
+    {\textbf{\texthebrew{מרקטפלייס (\LR{35\%})}}\\[2pt]\scriptsize\texthebrew{\textenglish{Terminal X} / סופר-פארם}\\[-1pt]\scriptsize\texthebrew{אמון ומשלוח מהיום למחר}};
+  \node[box=AuraHoney, text width=3.65cm] (l3l) at (-4.15, -5.26)
+    {\textbf{\texthebrew{דוכן וקוד \textenglish{QR} (\LR{15\%})}}\\[2pt]\scriptsize\texthebrew{רכישה אימפולסיבית בקמפוס}\\[-1pt]\scriptsize\texthebrew{במחיר השקה של \LR{69} ש"ח}};
+
+  % Layer 4 node (Data & Retention)
+  \node[corebox=AuraPlum, text width=11.9cm, minimum height=0.98cm] (l4) at (0, -7.70)
+    {\textbf{\texthebrew{מנוע נתוני צד אפס ושימור לקוחות (חודשים \LR{5--6})}}\\[2pt]\scriptsize\texthebrew{פרופילי טעם וגוון $\leftarrow$ מסעות \textenglish{CRM} מותאמים $\leftarrow$ הסטת תקציב לגוונים המובילים ומארזי טעימות לשימור \textenglish{LTV}}};
+
+  % =================================================================
+  % 3. FLOW ARROWS & FEEDBACK LOOP
+  % =================================================================
+  \draw[arr] (-3.15, -0.82) -- (-3.15, -1.56);
+  \draw[arr] (0, -0.82) -- (0, -1.56);
+  \draw[arr] (3.15, -0.82) -- (3.15, -1.56);
+
+  \draw[arr] (-4.15, -3.48) -- (-4.15, -4.22);
+  \draw[arr] (0, -3.48) -- (0, -4.22);
+  \draw[arr] (4.15, -3.48) -- (4.15, -4.22);
+
+  \draw[arr] (-3.15, -6.10) -- (-3.15, -6.82);
+  \draw[arr] (3.15, -6.10) -- (3.15, -6.82);
+
+  % Bidirectional synergy arrow between Physical & Digital in Layer 2
+  \draw[{Stealth[length=4.5pt]}-{Stealth[length=4.5pt]}, AuraBerry, line width=0.95pt]
+    (l2l.east) -- (l2r.west);
+
+  % Feedback Loop on Left Edge (Data & UGC Flywheel)
+  \draw[fbarr] (-6.30, -7.70) -- (-6.86, -7.70) -- (-6.86, -0.02) -- (-6.30, -0.02);
+  \node[rotate=90, font=\sffamily\scriptsize\bfseries, text=AuraCocoa, fill=white, inner sep=2.2pt]
+    at (-6.86, -3.86) {\texthebrew{לולאת נתוני צד אפס + \textenglish{UGC} לשיפור המרה והורדת \textenglish{CAC}}};
+
+\end{tikzpicture}
