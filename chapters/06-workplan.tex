@@ -1,16 +1,163 @@
 % =====================================================================
 %  Chapter 6: Work plan                           Page budget: 4 (pp. 31-34)
-%  Booklet: WBS, RACI, Gantt chart, milestones, critical path.
+%  Booklet (ch. 8): WBS (TikZ), RACI, budget table, Gantt chart,
+%           milestones, critical path.
 %  Owner: Raghad (Antigravity) - only she edits this file
 % =====================================================================
 \chapter{תוכנית עבודה}
 \label{ch:workplan}
 
-\section{מבנה פירוק העבודה}
-\draftnote{\en{WBS}: חבילות עבודה ותוצר לכל חבילה.}
+פרק זה מתרגם את חלופת ההשקה ההיברידית שנבחרה בפרק~\ref{ch:alternatives}
+(\en{Omnichannel Hybrid}, תקציב של \ltr{150} אלף ש"ח) ואת יעדי התכן ומפרט
+הדרישות מפרק~\ref{ch:problem} (\en{G1--G5} ו-\en{REQ-01--REQ-09}) לתוכנית ביצוע
+בת \ltr{6} חודשים. בהתאם לעקרונות ניהול הפרויקטים של מדריך \en{PMBOK} ושל
+קרזנר~\cite{pmi2021pmbok,kerzner2022project}, התוכנית נשענת על שלושה כלים
+משלימים: מבנה פירוק עבודה (\en{WBS}) ותקציב משויך לחבילות, מטריצת אחריות
+(\en{RACI}), ותרשים גאנט עם אבני דרך ונתיב קריטי (\en{CPM}).
+
+\section{מבנה פירוק העבודה ותקציב ההשקה}
+\label{sec:workplan-wbs}
+
+מבנה פירוק העבודה (\en{WBS}) מפרק את היקף ההשקה לשש חבילות מונחות תוצרים
+(\en{WP1} עד \en{WP6}), חבילה לכל חודש, באופן המבטיח כי כל דרישת חובה או
+רצוי מפרק~\ref{ch:problem} ממופה לתוצר מדיד ולסעיף תקציבי~\cite{pmi2021pmbok}.
+איור~\ref{fig:wbs-tree} מציג את עץ ה-\en{WBS} המלא: שלוש החבילות הראשונות
+(\en{WP1--WP3}, חודשים \ltr{1--3}) בונות את התשתית הרגולטורית, הדיגיטלית
+והתוכנית עד שער העלייה לאוויר, ושלוש החבילות האחרונות (\en{WP4--WP6}, חודשים
+\ltr{4--6}) מממשות את המכירה הפעילה, \ltr{3} ברי הטעימות והשימור.
+
+\begin{figure}[htb]
+  \begin{diagram}
+    \input{figures/tikz/wbs_tree}
+  \end{diagram}
+  \caption{מבנה פירוק העבודה (\en{WBS}) להשקת \en{AURA}: שש חבילות עבודה
+    ותוצריהן לאורך \ltr{6} חודשים במסגרת תקציב של \ltr{150} אלף ש"ח}
+  \label{fig:wbs-tree}
+\end{figure}
+
+טבלה~\ref{tab:wbs-budget} מרכזת את התוצרים המרכזיים ואת חלוקת תקציב ההשקה
+(\ltr{150} אלף ש"ח) בין שש החבילות, בעקביות מלאה עם תמהיל התקציב מפרק~\ref{ch:alternatives}:
+\ltr{32} אלף ש"ח לתשתית \en{D2C}, רגולציה, סוכן \en{AI} ומרקטפלייס (\en{WP1}
+ורכיב הטמעה ב-\en{WP2}), \ltr{43} אלף ש"ח לתוכן ו-\ltr{20--30} מיקרו-משפיעניות
+(\en{WP2}), \ltr{40} אלף ש"ח ל-\ltr{3} ברי טעימות ול-\ltr{3,000} דוגמיות
+(\en{WP4--WP5}), ו-\ltr{35} אלף ש"ח למדיה ממומנת, רימרקטינג וסקרי מודעות
+(\en{WP3--WP6}).
+
+\begin{table}[htb]
+  \caption{מיפוי חבילות העבודה (\en{WBS}), התוצרים, הדרישות והתקציב (\ltr{150} אלף ש"ח)}
+  \label{tab:wbs-budget}
+  \centering\auratablestripes
+  \setlength{\tabcolsep}{4pt}
+  \scriptsize
+  \begin{tabular}{>{\raggedleft\arraybackslash}p{1.2cm} >{\raggedleft\arraybackslash}p{5.5cm} r r >{\raggedleft\arraybackslash}p{3.0cm}}
+    \headrow \hcell{חבילה} & \hcell{תוצרים עיקריים וקשר ליעדים ודרישות} & \hcell{תקציב (אלף ש"ח)} & \hcell{שיעור} & \hcell{אבן דרך} \\
+    \en{WP1} & ספר מותג, אריזות \ltr{5} גוונים, הגשת \en{REQ-01} למשרד הבריאות, הקמת \en{D2C} ומרקטפלייס & \ltr{24} & \ltr{16\%} & \en{M1}: אישור מותג והגשת \en{REQ-01} \\
+    \en{WP2} & צילומי \en{ASMR}, גיוס \ltr{20--30} יוצרות (\en{REQ-07}, \en{REQ-02}), סוכן \en{AI} ואישורי \ltr{3} קמפוסים & \ltr{51} & \ltr{34\%} & \en{M2}: בנק תוכן ויוצרות סגור \\
+    \en{WP3} & אישור \en{REQ-01} (\ltr{5/5}), \ltr{10} הזמנות ניסיון (\en{REQ-03}), טיזרים, המתנה וסקר בסיס (\en{REQ-09}) & \ltr{9} & \ltr{6\%} & \en{M3}: שער \en{Go/No-Go} לעלייה לאוויר \\
+    \en{WP4} & פתיחת מכירות \en{D2C} ומרקטפלייס (\en{REQ-04}), גל יוצרות (\en{REQ-06}) וברי טעימות \ltr{1--2} & \ltr{36} & \ltr{24\%} & \en{M4}: השקה תקינה וגל מכירות \\
+    \en{WP5} & בר טעימות \ltr{3} (השלמת \ltr{3,000} דוגמיות, \en{G3}), אופטימיזציית \en{CAC} ויעד \ltr{1M} צפיות (\en{G2}) & \ltr{21} & \ltr{14\%} & \en{M5}: עמידה ב-\en{G2}, \en{G3} ושיפור \en{CAC} \\
+    \en{WP6} & מארזי טעימות (\ltr{2--3} גוונים), \en{CRM}, סקר מסכם (\en{G1}), אימות \ltr{255} אלף ש"ח (\en{G4}) ודוח \en{ROI} & \ltr{9} & \ltr{6\%} & \en{M6}: מסירת דוח ביצועים סופי \\
+    \midrule
+    \textbf{סה"כ} & \textbf{כיסוי מלא של \en{G1--G5} ושל \en{REQ-01--REQ-09}} & \textbf{\ltr{150}} & \textbf{\ltr{100\%}} & \textbf{\ltr{6} אבני דרך מבוקרות} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
 
 \section{חלוקת אחריות}
-\draftnote{מטריצת \en{RACI}.}
+\label{sec:workplan-raci}
 
-\section{לוח זמנים ואבני דרך}
-\draftnote{תרשים גאנט, נתיב קריטי ואבני דרך.}
+להגדרת בעלות ברורה ומניעת חפיפות או פערי אחריות בין התפקידים, יושמה מטריצת
+\en{RACI} (\en{Responsible, Accountable, Consulted, Informed})~\cite{pmi2021pmbok,kerzner2022project}.
+כלל הבקרה המרכזי הוא כי לכל פעילות מוגדרת \textbf{אחראית סופית יחידה (\en{A})}
+--- מנהלת המותג --- ולפחות מבצעת ישירה אחת (\en{R}). טבלה~\ref{tab:raci} מפרטת
+את חלוקת האחריות עבור חמשת התפקידים המרכזיים בפרויקט, לרבות בקרת העמידה
+ברגולציית משרד הבריאות (\en{REQ-01}) ובסימון תוכן ממומן
+(\en{REQ-02})~\cite{ita2023israelcosmetics,ravia2021influencers}.
+
+\begin{table}[htb]
+  \caption{מטריצת אחריות (\en{RACI}) לתחומי הפעולה המרכזיים בהשקת \en{AURA}}
+  \label{tab:raci}
+  \centering\auratablestripes
+  \setlength{\tabcolsep}{4pt}
+  \footnotesize
+  \begin{tabular}{>{\raggedleft\arraybackslash}p{4.3cm} r r r r r}
+    \headrow \hcell{תחום פעולה / חבילת עבודה} & \hcell{מנהלת מותג} & \hcell{מעצבת} & \hcell{מנהלת מדיה ושטח} & \hcell{משפיעניות} & \hcell{אנליסטית} \\
+    ספר מותג, אריזות ועיצוב דוכן (\en{WP1--WP2}) & \textbf{\en{A}} & \textbf{\en{R}} & \en{C} & \en{I} & \en{I} \\
+    רגולציה (\en{REQ-01}), \en{D2C} ומרקטפלייס (\en{WP1, WP3}) & \textbf{\en{A/R}} & \en{C} & \en{I} & \en{I} & \en{C} \\
+    הפקת תוכן, \en{ASMR} ו-\en{AI Sommelier} (\en{WP2--WP3}) & \textbf{\en{A}} & \en{C} & \textbf{\en{R}} & \en{C} & \en{I} \\
+    גיוס \ltr{20--30} יוצרות ובקרת \en{REQ-02} (\en{WP2, WP4}) & \textbf{\en{A}} & \en{I} & \textbf{\en{R}} & \textbf{\en{R}} & \en{C} \\
+    תפעול \ltr{3} ברי טעימות בקמפוסים (\en{WP4--WP5}) & \textbf{\en{A/R}} & \en{C} & \textbf{\en{R}} & \en{C} & \en{I} \\
+    אנליטיקה, קודי קופון, סקרים ודוח \en{ROI} (\en{WP3--WP6}) & \textbf{\en{A}} & \en{I} & \en{C} & \en{I} & \textbf{\en{R}} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+חלוקה זו בטבלה~\ref{tab:raci} שומרת על זרימה מאוזנת: המעצבת מובילה את השפה
+החזותית בחודשים \ltr{1--2}; מנהלת המדיה והשטח מרכזת את פעילות היוצרות
+(\en{REQ-05}, \en{REQ-07}) ותפעול ברי הטעימות (\en{REQ-08}) בסיוע היוצרות
+עצמן; האנליסטית אחראית על מדידת קודי הקופון (\en{REQ-06}), סקרי המודעות
+(\en{REQ-09}) ושיעור ההמרה (\en{G5}); ומנהלת המותג משמשת סמכות מאשרת בכל
+השערים ומובילה ישירות את החסם הרגולטורי ואת תפעול הקמפוסים.
+
+\section{לוח זמנים, אבני דרך ונתיב קריטי}
+\label{sec:workplan-schedule}
+
+לוח הזמנים בן \ltr{6} החודשים נבנה לפי שיטת הנתיב הקריטי (\en{CPM}) של קלי
+וווקר~\cite{kelley1959critical}, המזהה את רצף המשימות התלויות הארוך ביותר
+שמרווח הגמישות (\en{Float}) שלו הוא אפס --- כלומר כל עיכוב בו דוחה ישירות את
+מועד ההשקה או את סיום הפרויקט. איור~\ref{fig:gantt-launch} מציג את תרשים
+הגאנט של \ltr{11} המשימות המרכזיות, את שש אבני הדרך (\en{M1--M6}), את קו
+ה-\en{Go-Live} בתחילת חודש \ltr{4}, ואת הדגשת הנתיב הקריטי בצבע אדום-רימון.
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=0.98\linewidth]{gantt_launch.pdf}
+  \caption{תרשים גאנט להשקת \en{AURA} לאורך \ltr{6} חודשים: משימות הנתיב הקריטי
+    מודגשות באדום-רימון, משימות מקבילות בצבעי הסדרה, ואבני הדרך \en{M1--M6}
+    מסומנות במעויני זהב}
+  \label{fig:gantt-launch}
+\end{figure}
+
+טבלה~\ref{tab:milestones} מגדירה את קריטריון האימות (שער המעבר) של כל אחת משש
+אבני הדרך המסומנות באיור~\ref{fig:gantt-launch}, בזיקה ישירה לדרישות
+פרק~\ref{ch:problem}.
+
+\begin{table}[htb]
+  \caption{אבני הדרך (\en{M1--M6}) וקריטריוני האימות בתוכנית ההשקה}
+  \label{tab:milestones}
+  \centering\auratablestripes
+  \setlength{\tabcolsep}{4.5pt}
+  \scriptsize
+  \begin{tabular}{>{\raggedleft\arraybackslash}p{0.9cm} r >{\raggedleft\arraybackslash}p{3.4cm} >{\raggedleft\arraybackslash}p{7.8cm}}
+    \headrow \hcell{מזהה} & \hcell{סוף חודש} & \hcell{אבן דרך} & \hcell{קריטריון אימות וקשר לדרישות וליעדים} \\
+    \en{M1} & \ltr{1} & אישור זהות והגשה רגולטורית & אישור ספר מותג ואריזות; הגשת הודעות שיווק ל-\ltr{5} הגוונים (\en{REQ-01}) \\
+    \en{M2} & \ltr{2} & נעילת תוכן, יוצרות ואישורים & בנק סרטוני \en{ASMR} מוכן; \ltr{20--30} חוזי יוצרות חתומים (\en{REQ-07}) ו-\ltr{3} אישורי קמפוס \\
+    \en{M3} & \ltr{3} & \textbf{שער \en{Go/No-Go} לעלייה לאוויר} & מספרי הודעה תקפים ל-\ltr{5/5} גוונים (\en{REQ-01}), \ltr{10} הזמנות ניסיון (\en{REQ-03}) וסקר בסיס (\en{REQ-09}) \\
+    \en{M4} & \ltr{4} & השקה תקינה וגל מכירות ראשון & פעילות \en{D2C} ומרקטפלייס במחיר אחיד (\en{REQ-04}), עליית יוצרות ו-\ltr{2} ברי טעימות ראשונים \\
+    \en{M5} & \ltr{5} & אופטימיזציית \en{CAC} וכיסוי שטח & השלמת בר טעימות \ltr{3} (\ltr{3,000} דוגמיות, \en{G3}), \ltr{1,000,000} צפיות (\en{G2}) והסטת מדיה לגוונים מובילים \\
+    \en{M6} & \ltr{6} & סגירת השקה ודוח ביצועים & אימות מודעות \ltr{$\geq$20\%} (\en{G1}), מכירות \ltr{255} אלף ש"ח (\en{G4}), המרה \ltr{$\geq$10\%} (\en{G5}) ודוח \en{ROI} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\textbf{ניתוח הנתיב הקריטי.} מתרשים הגאנט באיור~\ref{fig:gantt-launch} עולה כי
+הנתיב הקריטי עובר ברצף: \textbf{משימה \ltr{1.2}} (\en{REQ-01}, חודשים
+\ltr{1--3}) $\leftarrow$ \textbf{שער \en{M3}} $\leftarrow$ \textbf{משימה
+\ltr{4.1}} (\en{Go-Live}, חודש \ltr{4}) $\leftarrow$ \textbf{משימה \ltr{5.1}}
+(אופטימיזציה, חודש \ltr{5}) $\leftarrow$ \textbf{משימה \ltr{6.1}} (שימור ודוח
+מסכם, חודש \ltr{6}). כפי שנקבע בפרק~\ref{ch:problem}, לפי רפורמת הקוסמטיקה
+בישראל לא ניתן לשווק אף גוון בטרם הושלמו הודעות השיווק למשרד
+הבריאות~\cite{ita2023israelcosmetics}; לכן לכל עיכוב במשימה \ltr{1.2} יש אפס
+מרווח גמישות והוא ידחה ישירות את \en{M3} ואת חלון המכירות (חודשים \ltr{4--6}).
+מנגד, למשימות המקבילות בחודשים \ltr{1--3} --- ובפרט צילומי \en{ASMR}, גיוס
+\ltr{20--30} היוצרות ותיאום הקמפוסים --- קיים מרווח גמישות של \ltr{2--3}
+שבועות אם יותנעו בתחילת חודש \ltr{2}.
+
+\begin{keymessage}[המסר המרכזי מתוכנית העבודה]
+תוכנית העבודה מפרקת את אסטרטגיית האומניצ'אנל ההיברידית לשש חבילות עבודה
+מבוקרות (\en{WP1--WP6}) במסגרת תקציב מדויקת של \ltr{150} אלף ש"ח, עם אחריות
+יחידה ברורה במטריצת \en{RACI} ושש אבני דרך מדידות (\en{M1--M6}). הנתיב הקריטי
+נשען על השלמת רגולציית משרד הבריאות (\en{REQ-01}) עד שער \en{M3} בסוף חודש
+\ltr{3} --- ממצא המוביל ישירות אל פרק~\ref{ch:risks}, שבו ינותחו הסיכונים
+לעמידה בלוחות הזמנים ובתקציב ויוגדרו תוכניות הפחתה ומגירה.
+\end{keymessage}
