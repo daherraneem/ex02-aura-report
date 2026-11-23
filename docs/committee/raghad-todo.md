@@ -27,9 +27,10 @@ Krishna sentence, terms). Only the items below are still open. IDs refer to
     the control campus (ch. 3, §3.5).
 - **Synced from your numbers** (ch. 2, abstract, summary): 1,500 samples (3 × 500 sealed minis),
   decision score 7.65, eight risks, maximum residual exposure 16 → 9.
-- **Not synced yet:** the sales target. Ch. 2, the abstract and the summary still say
-  **255K ₪ / ~3,700 units** (Raneem was told not to change sales numbers in this round). They
-  will be updated to your `numbers.md` base case (2,200 units / 150K ₪ gross) in the next round.
+- **Synced in prompt 21:** the sales target. Ch. 2 (G4, both tables, problem statement, guiding
+  question), the abstract and the summary now use your `numbers.md` base case: **~2,200 units /
+  ~150K ₪ gross (~127K net) in months 4–6**, budget 150K ₪, break-even **4,412 units in months
+  9–10**. The old 255K ₪ / 3,700 units no longer appear anywhere in the report.
 
 ## 1. Still open in chapters 4–7
 
@@ -43,6 +44,19 @@ Krishna sentence, terms). Only the items below are still open. IDs refer to
    `wbs_tree.tex` (7) still call `\textenglish` / `\LR` directly instead of the class macros
    `\en` / `\ltr`. If the class macros do not work inside TikZ nodes, tell Raneem and a
    TikZ-safe macro will be added to the class.
+
+## 1a. Numbers check across all chapters (prompt 21, 2026-11-23)
+
+Raneem's agent checked the sales target, budget and break-even in every chapter, the abstract,
+the TikZ files and the Python figures against `numbers.md`.
+
+- **No number mismatches in chapters 4–7.** Ch. 4 (2,200 units / 150K gross / 127.1K net,
+  ~30% of SOM, 0.59% of SAM), ch. 5 (34.0 ₪ contribution, 4,412 units / ~304K gross / ~258K net,
+  months 9–10, −75.2K, budget 78K + 40K + 32K), ch. 6 (WP1–WP6 = 22 + 53 + 9 + 36 + 21 + 9 =
+  150K, 100%; M6 2,200 units / 150K; break-even 4,412 in months 9–10) and the TikZ files
+  `launch_architecture.tex` and `wbs_tree.tex` all match. Ch. 7 has no sales or break-even numbers.
+- **Wording only (optional):** `04-market.tex` line 87, "יעד מדורג וריבועי" — "ריבועי" means
+  "quadratic"; did you mean "רבעוני" (quarterly)?
 
 ## 2. Process (F8)
 
