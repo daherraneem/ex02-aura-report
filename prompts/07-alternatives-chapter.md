@@ -1,4 +1,4 @@
-# 05 – Chapter 5: Launch Alternatives
+# 07 – Chapter 5: Launch Alternatives
 
 **Author:** Raghad · **Agent:** Antigravity · **Date:** 2026-11-23
 
