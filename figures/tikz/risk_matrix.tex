@@ -47,8 +47,8 @@
   \foreach \p in {1,...,5} {
     \node[tick] at (-0.28, {(\p-0.5)*\ch}) {\p};
   }
-  \node[axlbl] at ({2.5*\cw}, -0.62) {\texthebrew{השפעה (\textenglish{I}: \LR{1} זניחה -- \LR{5} קריטית)}};
-  \node[axlbl, rotate=90] at (-0.72, {2.5*\ch}) {\texthebrew{הסתברות (\textenglish{P}: \LR{1--5})}};
+  \node[axlbl] at ({2.5*\cw}, -0.62) {\texthebrew{השפעה (\en{I}: \ltr{1} זניחה -- \ltr{5} קריטית)}};
+  \node[axlbl, rotate=90] at (-0.72, {2.5*\ch}) {\texthebrew{הסתברות (\en{P}: \ltr{1--5})}};
 
   % Plot R1-R8 cleanly without overlap:
   % Cell (4,4): R1, R2
@@ -69,17 +69,17 @@
   \begin{scope}[shift={({5*\cw + 0.50}, 0.22)}]
     \node[axlbl, anchor=west] at (0, 3.26) {\texthebrew{מקרא רמות סיכון ($R = P \times I$)}};
     \fill[AuraRuby!34, draw=AuraMuted!60] (0, 2.62) rectangle (0.36, 2.90);
-    \node[tick, anchor=west] at (0.48, 2.76) {\texthebrew{קריטי (\LR{20--25}): עצירה וטיפול מיידי}};
+    \node[tick, anchor=west] at (0.48, 2.76) {\texthebrew{קריטי (\ltr{20--25}): עצירה וטיפול מיידי}};
     \fill[AuraPeach!38, draw=AuraMuted!60] (0, 2.12) rectangle (0.36, 2.40);
-    \node[tick, anchor=west] at (0.48, 2.26) {\texthebrew{גבוה (\LR{12--16}): חובת מנע ומגירה}};
+    \node[tick, anchor=west] at (0.48, 2.26) {\texthebrew{גבוה (\ltr{12--16}): חובת מנע ומגירה}};
     \fill[AuraGold!26, draw=AuraMuted!60] (0, 1.62) rectangle (0.36, 1.90);
-    \node[tick, anchor=west] at (0.48, 1.76) {\texthebrew{בינוני (\LR{5--10}): ניטור שוטף}};
+    \node[tick, anchor=west] at (0.48, 1.76) {\texthebrew{בינוני (\ltr{5--10}): ניטור שוטף}};
     \fill[green!13!AuraCream, draw=AuraMuted!60] (0, 1.12) rectangle (0.36, 1.40);
-    \node[tick, anchor=west] at (0.48, 1.26) {\texthebrew{נמוך (\LR{1--4}): קבלה ובקרה בסיסית}};
+    \node[tick, anchor=west] at (0.48, 1.26) {\texthebrew{נמוך (\ltr{1--4}): קבלה ובקרה בסיסית}};
     \node[critbadge, scale=0.84] at (0.18, 0.68) {R};
-    \node[tick, anchor=west] at (0.48, 0.68) {\texthebrew{סיכון עם $R \geq 12$ (\textenglish{R1--R7})}};
+    \node[tick, anchor=west] at (0.48, 0.68) {\texthebrew{סיכון עם $R \geq 12$ (\en{R1--R7})}};
     \node[rbadge, scale=0.84] at (0.18, 0.18) {R};
-    \node[tick, anchor=west] at (0.48, 0.18) {\texthebrew{סיכון מתחת לסף (\textenglish{R8})}};
+    \node[tick, anchor=west] at (0.48, 0.18) {\texthebrew{סיכון מתחת לסף (\en{R8})}};
   \end{scope}
 
 \end{tikzpicture}
