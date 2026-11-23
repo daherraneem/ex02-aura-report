@@ -1,0 +1,82 @@
+% Colored 5x5 Risk Matrix (P x I) for AURA Launch Risks (R1-R7)
+% Used inside \begin{diagram} (LTR); Hebrew labels use \texthebrew{...}.
+\begin{tikzpicture}[
+    cell/.style={draw=white, line width=1.1pt},
+    score/.style={font=\sffamily\fontsize{6.2}{7}\selectfont, text=AuraMuted!85},
+    rbadge/.style={circle, fill=AuraPlum, text=white, inner sep=1.2pt,
+      minimum size=0.46cm, font=\sffamily\fontsize{6.8}{7}\selectfont\bfseries},
+    critbadge/.style={circle, fill=AuraRuby, text=white, draw=white, line width=0.7pt,
+      inner sep=1.2pt, minimum size=0.48cm, font=\sffamily\fontsize{6.8}{7}\selectfont\bfseries},
+    axlbl/.style={font=\sffamily\scriptsize\bfseries, text=AuraPlum},
+    tick/.style={font=\sffamily\scriptsize, text=AuraInk}
+  ]
+
+  \def\cw{1.22}  % cell width (cm)
+  \def\ch{0.76}  % cell height (cm)
+
+  % Draw 5x5 colored cells: i = Impact (1..5, x-axis), p = Probability (1..5, y-axis)
+  \foreach \p in {1,...,5} {
+    \foreach \i in {1,...,5} {
+      \pgfmathtruncatemacro{\sc}{\p * \i}
+      \ifnum\sc<5
+        \def\ccol{green!13!AuraCream}
+      \else\ifnum\sc<11
+        \def\ccol{AuraGold!26}
+      \else\ifnum\sc<17
+        \def\ccol{AuraPeach!38}
+      \else
+        \def\ccol{AuraRuby!34}
+      \fi\fi\fi
+      \fill[\ccol, cell] ({(\i-1)*\cw}, {(\p-1)*\ch}) rectangle ({\i*\cw}, {\p*\ch});
+      \node[score, anchor=north east] at ({\i*\cw - 0.05}, {\p*\ch - 0.04}) {\sc};
+    }
+  }
+
+  % Subtle dashed boundary highlighting the R >= 12 mandatory mitigation zone
+  \draw[AuraRuby!85!AuraPlum, line width=1.2pt, dashed]
+    ({2*\cw}, {5*\ch}) -- ({2*\cw}, {3*\ch}) -- ({3*\cw}, {3*\ch}) --
+    ({3*\cw}, {2*\ch}) -- ({5*\cw}, {2*\ch}) -- ({5*\cw}, {5*\ch}) -- cycle;
+
+  % Axis ticks and titles
+  \foreach \i/\ilbl in {1/{1}, 2/{2}, 3/{3}, 4/{4}, 5/{5}} {
+    \node[tick] at ({(\i-0.5)*\cw}, -0.26) {\ilbl};
+  }
+  \foreach \p/\plbl in {1/{1}, 2/{2}, 3/{3}, 4/{4}, 5/{5}} {
+    \node[tick] at (-0.28, {(\p-0.5)*\ch}) {\plbl};
+  }
+  \node[axlbl] at ({2.5*\cw}, -0.62) {\texthebrew{השפעה (\textenglish{I}: \LR{1} זניחה -- \LR{5} קריטית)}};
+  \node[axlbl, rotate=90] at (-0.72, {2.5*\ch}) {\texthebrew{הסתברות (\textenglish{P}: \LR{1--5})}};
+
+  % Plot R1-R7 risk badges in exact (I, P) cells:
+  % R1 (P=4, I=4, R=16) and R2 (P=4, I=4, R=16) side-by-side in cell (4,4)
+  \node[critbadge] at ({3.28*\cw}, {3.42*\ch}) {R1};
+  \node[critbadge] at ({3.72*\cw}, {3.42*\ch}) {R2};
+  % R3 (P=3, I=5, R=15) in cell (5,3)
+  \node[critbadge] at ({4.48*\cw}, {2.44*\ch}) {R3};
+  % R4 (P=4, I=3, R=12) in cell (3,4)
+  \node[critbadge] at ({2.48*\cw}, {3.44*\ch}) {R4};
+  % R5 (P=3, I=4, R=12) in cell (4,3)
+  \node[critbadge] at ({3.48*\cw}, {2.44*\ch}) {R5};
+  % R6 (P=2, I=4, R=8) in cell (4,2)
+  \node[rbadge] at ({3.48*\cw}, {1.44*\ch}) {R6};
+  % R7 (P=2, I=3, R=6) in cell (3,2)
+  \node[rbadge] at ({2.48*\cw}, {1.44*\ch}) {R7};
+
+  % Legend box on the right side (cleanly aligned vertically)
+  \begin{scope}[shift={({5*\cw + 0.55}, 0.22)}]
+    \node[axlbl, anchor=west] at (0, 3.22) {\texthebrew{מקרא רמות סיכון ($R = P \times I$)}};
+    \fill[AuraRuby!34, draw=AuraMuted!60] (0, 2.58) rectangle (0.36, 2.86);
+    \node[tick, anchor=west] at (0.48, 2.72) {\texthebrew{קריטי (\LR{20--25}): עצירה וטיפול מיידי}};
+    \fill[AuraPeach!38, draw=AuraMuted!60] (0, 2.08) rectangle (0.36, 2.36);
+    \node[tick, anchor=west] at (0.48, 2.22) {\texthebrew{גבוה (\LR{12--16}): חובת מנע ומגירה}};
+    \fill[AuraGold!26, draw=AuraMuted!60] (0, 1.58) rectangle (0.36, 1.86);
+    \node[tick, anchor=west] at (0.48, 1.72) {\texthebrew{בינוני (\LR{5--10}): ניטור שוטף}};
+    \fill[green!13!AuraCream, draw=AuraMuted!60] (0, 1.08) rectangle (0.36, 1.36);
+    \node[tick, anchor=west] at (0.48, 1.22) {\texthebrew{נמוך (\LR{1--4}): קבלה ובקרה בסיסית}};
+    \node[critbadge, scale=0.82] at (0.18, 0.66) {R};
+    \node[tick, anchor=west] at (0.48, 0.66) {\texthebrew{סיכון עם $R \geq 12$ (\textenglish{R1--R5})}};
+    \node[rbadge, scale=0.82] at (0.18, 0.16) {R};
+    \node[tick, anchor=west] at (0.48, 0.16) {\texthebrew{סיכון מתחת לסף (\textenglish{R6--R7})}};
+  \end{scope}
+
+\end{tikzpicture}
