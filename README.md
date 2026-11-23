@@ -53,7 +53,7 @@ announced steps.
 
 **Workflow.** Raneem worked with Claude Code and Raghad with Antigravity, under the same
 rules (`CLAUDE.md` = `AGENTS.md`): `git pull` before every task, no force push, every prompt
-saved word for word in `prompts/` (01–25, continuous numbering), a summary and the user's
+saved word for word in `prompts/` (01–26, continuous numbering), a summary and the user's
 approval before every push, and a line in the Progress Log below.
 
 ## Project structure
@@ -168,7 +168,7 @@ tables); and process gaps (stale README, PDF not committed).
 | LG-12 No Python graph in chapters 1–3 and 8 | Not added | The Python graphs are in chapters 4–6 (market, decision matrix, Gantt), where the data is; chapters 1–3 are text and theory, so a graph there would be decoration |
 | LG-13 `figures/page_budget.py` built but not used | **Fixed** | Removed from the build (script and PDF deleted; it was not used in the report) |
 | LG-02 / LG-03 Prompt 03 holds Gemini's answer, not the prompt to it | Not changed | The planning talk with Gemini happened in the browser; we saved its brief as the record, and the real prompts to the agents start at prompt 04 |
-| LG-15 / LG-11 Rule-file additions (reserving prompt numbers, commit-message length) | Not changed | Minor rule-file wording; the rules themselves were followed in practice (see `prompts/`) |
+| LG-15 / LG-11 Rule-file additions (reserving prompt numbers, commit-message length) | Not changed | There was one prompt-numbering clash during the work, fixed by renaming the file; some commit messages were longer than the rule. The rule files were not updated because the work was finished |
 | LG-16 Faculty name on the cover | Not changed | The cover follows the course details given by the lecturer |
 
 ## Progress Log
@@ -191,3 +191,4 @@ tables); and process gaps (stale README, PDF not committed).
 - **2026-11-23** – Synced the agreed numbers from `docs/committee/numbers.md` into chapter 2 (G4, both tables, problem statement, guiding question), chapter 8 and the executive summary: ~2,200 units / ~150K ₪ gross in months 4–6, break-even 4,412 units in months 9–10. Checked all chapters: no number mismatches in chapters 4–7 (noted in `docs/committee/raghad-todo.md`). Fixed 2 overfull lines in chapter 2. Clean build (`main.pdf`, 50 pages, 0 errors). Prompts saved in `prompts/20-raghad-todo-stopped.md` and `prompts/21-sync-numbers.md` (Raneem).
 - **2026-11-23** – Closed open committee items from `docs/committee/raghad-todo.md` in chapters 4–7 and TikZ diagrams: brought chapter 4 back to 6 pages (pp. 17–22, total body 37 pp.) and fixed the line-87 wording typo (`ורבעוני`); added the control campus and foil brand (`REQ-09`/`G1`) plus explicit survey budget breakout (`5K` inside `35K`, total `150K` unchanged) to chapter 6 (`WP3`/`WP6`/`M3`/`M6`, `wbs_tree.tex`) while keeping 4 pages; cleared both overfull lines in chapter 7 (`p{0.92cm}` on ID column); switched all raw `\textenglish`/`\LR` calls in `launch_architecture.tex`, `wbs_tree.tex` and `risk_matrix.tex` to class macros `\en`/`\ltr` and fixed `\ltr{...K}` BiDi ordering. Clean build (`main.pdf`, 49 pages, 0 errors, 0 overfulls). Prompt saved in `prompts/23-raghad-todo-fixes.md` (Raghad).
 - **2026-11-23** – Final submission: cover shows each student's Hebrew name under her English name (class `aura-report.cls` v0.3, new `\addauthor`); fixed 10 reversed `\ltr{..}K` amounts in chapter 5 (done by Raneem's agent with Raghad's approval); full build and page-by-page check (49 pages, 0 errors, 0 overfull lines, no draft boxes); final PDF committed as `report/rr-mkcom-ex02-report.pdf`; 5 screenshots in `assets/screenshots/`; README rewritten (final submission, committee results); checked `prompts/` (01–25, no gaps, none empty, no renames needed) and that no ID numbers are in the repo; tag `submission-ex02`. Removed the unused `figures/page_budget.py` from the build (LG-13) and added reasons for the process items left open. Prompts saved in `prompts/24-final-submission.md` and `prompts/25-open-items-reasons.md` (Raneem).
+- **2026-11-23** – Made the LG-15 / LG-11 row in the committee section accurate (one prompt-numbering clash fixed by renaming; some commit messages longer than the rule; rule files not updated). README only; the tag `submission-ex02` was not moved. Prompt saved in `prompts/26-lg15-row.md` (Raneem).
