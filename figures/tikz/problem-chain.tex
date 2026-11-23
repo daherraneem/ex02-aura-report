@@ -1,0 +1,19 @@
+% Chapter 2: from the current state to the requirements (read right to left).
+% Used inside \begin{diagram} (LTR); Hebrew labels use \texthebrew.
+% Colors follow the chapter shades of aura-report.cls.
+\begin{tikzpicture}[
+    step/.style={rectangle, rounded corners=5pt, draw=#1, line width=0.9pt,
+      fill=#1!12, minimum width=3.0cm, minimum height=1.35cm,
+      text width=2.9cm, align=center, font=\sffamily\footnotesize,
+      text=AuraPlum},
+    flow/.style={-{Stealth[length=5pt]}, AuraGold, line width=1pt}]
+  \foreach \i/\c/\t in {
+      1/AuraHoney/{\textbf{המצב המצוי}\\מותג חדש, אפס מודעות},
+      2/AuraPeach/{\textbf{הפער}\\נראות, התנסות ומחיר},
+      3/AuraBerry/{\textbf{שאלה ויעדי \en{SMART}}\\סעיף~\ref{sec:problem-goals}},
+      4/AuraRuby/{\textbf{מפרט דרישות}\\סעיף~\ref{sec:problem-reqs}}} {
+    \node[step=\c] (s\i) at ({-3.55*\i}, 0) {\texthebrew{\t}};
+  }
+  \foreach \i [evaluate=\i as \j using int(\i+1)] in {1,...,3}
+    \draw[flow] (s\i.west) -- (s\j.east);
+\end{tikzpicture}
