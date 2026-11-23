@@ -58,6 +58,12 @@ the TikZ files and the Python figures against `numbers.md`.
 - **Wording only (optional):** `04-market.tex` line 87, "יעד מדורג וריבועי" — "ריבועי" means
   "quadratic"; did you mean "רבעוני" (quarterly)?
 
+## 1b. Done for you at submission (prompt 24, with your approval)
+
+- `05-alternatives.tex`: 10 amounts written as `\ltr{43}K` printed reversed ("K43", "K75.2-" in
+  Table 5.3). The K was moved inside `\ltr{}` (lines 87–89, 113, 240–243), the same fix you made
+  in chapters 4, 6 and 7. No other change to your files.
+
 ## 2. Process (F8)
 
 - **LG-02 / LG-03:** prompt 03 holds Gemini's answer, not your prompt to Gemini; prompt 04 is

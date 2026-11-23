@@ -16,6 +16,9 @@
 %                      \sep never starts a line; compact bibliography
 %                      (single spacing, small, ragged right, URL breaks,
 %                      year printed for online sources).
+%    v0.3  2026-11-23  Cover: \addauthor{en}{he} (one per student) prints each
+%                      student's Hebrew name directly under her English name;
+%                      replaces \authors.
 %
 %  COMMAND LIST  (use only these in chapter files)
 %  --- Direction -------------------------------------------------------
@@ -40,7 +43,7 @@
 %  --- Front matter ----------------------------------------------------
 %    \reporttitle{he}{en}  \reportsubtitle{he}  \reportdate{..}
 %    \course{he}{en}  \institution{he}{en}  \lecturer{he}{en}
-%    \authors{he}{en}  \copyrightholder{en}
+%    \addauthor{en}{he}  (once per student)  \copyrightholder{en}
 %    \makecover                      cover page (no page number)
 %    \keywords{a \sep b \sep c}      keyword line under the summary
 %    \begin{abbreviations} \abbr{PCB}{definition} ... \end{abbreviations}
@@ -49,7 +52,7 @@
 %    \draftnote{text}                dashed gray box: what a section must prove
 % =====================================================================
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{aura-report}[2026/11/22 v0.1 AURA preparatory report]
+\ProvidesClass{aura-report}[2026/11/23 v0.3 AURA preparatory report]
 
 \LoadClass[12pt,a4paper,oneside,openany]{book}
 
@@ -296,14 +299,19 @@
 \newcommand{\@coursehe}{}\newcommand{\@courseen}{}
 \newcommand{\@insthe}{}\newcommand{\@insten}{}
 \newcommand{\@lecturerhe}{}\newcommand{\@lectureren}{}
-\newcommand{\@authorshe}{}\newcommand{\@authorsen}{}
+\newcommand{\@authorcols}{}
 \newcommand{\@reportdate}{\today}\newcommand{\@copyrightholder}{}
 \newcommand{\reporttitle}[2]{\renewcommand{\@titlehe}{#1}\renewcommand{\@titleen}{#2}}
 \newcommand{\reportsubtitle}[1]{\renewcommand{\@subtitlehe}{#1}}
 \newcommand{\course}[2]{\renewcommand{\@coursehe}{#1}\renewcommand{\@courseen}{#2}}
 \newcommand{\institution}[2]{\renewcommand{\@insthe}{#1}\renewcommand{\@insten}{#2}}
 \newcommand{\lecturer}[2]{\renewcommand{\@lecturerhe}{#1}\renewcommand{\@lectureren}{#2}}
-\newcommand{\authors}[2]{\renewcommand{\@authorshe}{#1}\renewcommand{\@authorsen}{#2}}
+% v0.3: one column per student, English name with the Hebrew name under it
+\newcommand{\addauthor}[2]{%
+  \ifx\@authorcols\@empty\else\g@addto@macro\@authorcols{\hspace{1.6cm}}\fi
+  \g@addto@macro\@authorcols{%
+    \begin{tabular}[t]{@{}c@{}}{\large\bfseries #1}\\[1pt]%
+      \texthebrew{\large #2}\end{tabular}}}
 \newcommand{\reportdate}[1]{\renewcommand{\@reportdate}{#1}}
 \newcommand{\copyrightholder}[1]{\renewcommand{\@copyrightholder}{#1}}
 
@@ -364,8 +372,7 @@
     \node[text=AuraPlum, align=center, font=\sffamily]
       at ($(C)+(0,-6.6)$)
       {\texthebrew{\small מגישות}\\[2pt]
-       \texthebrew{\large\bfseries\@authorshe}\\[1pt]
-       {\normalsize\@authorsen}\\[10pt]
+       \@authorcols\\[10pt]
        \texthebrew{\small מרצה: \@lecturerhe}\enspace|\enspace{\small\@lectureren}\\[4pt]
        \texthebrew{\small\@reportdate}};
     % copyright (bottom band, English font)
