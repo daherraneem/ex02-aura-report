@@ -172,3 +172,12 @@ new figures before editing), and F8 last, together with the final build.
 
 **Not recommended now:** DL-16, DL-14, a full message house (MP-08) and a half-page brand
 section (BS-12) — they cost pages the booklet does not give.
+
+## 4. Status (updated 2026-11-23)
+
+- **Raghad, commit `2a88450`:** F1, F4, F5, F6, F7 in chapters 4–7 (new numbers in
+  [numbers.md](numbers.md)).
+- **Raneem, prompt 18:** F3 (class v0.2), F2 (chapters 2–3), F6/F7 in chapters 1–3, 8 and the
+  abstract. Open items for chapters 4–7 are in [raghad-todo.md](raghad-todo.md).
+- **Still open:** syncing the sales target (F1) in chapter 2, the abstract and the summary to
+  `numbers.md`; F8 (README, prompt-log gaps, final PDF at submission).

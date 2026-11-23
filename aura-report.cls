@@ -8,6 +8,14 @@
 %                      AURA colors, cover, chapter openers, header/footer,
 %                      four box types, styled tables, diagrams, captions,
 %                      abbreviations, keywords, IEEE bibliography.
+%    v0.2  2026-11-23  After the expert committee (docs/committee, fix F3):
+%                      tighter abbreviations table;
+%                      \en and \ltr are robust (no lost spaces in the lists
+%                      of figures/tables); no hyphenation inside \en; lists
+%                      of figures/tables in the TOC, wider number box;
+%                      \sep never starts a line; compact bibliography
+%                      (single spacing, small, ragged right, URL breaks,
+%                      year printed for online sources).
 %
 %  COMMAND LIST  (use only these in chapter files)
 %  --- Direction -------------------------------------------------------
@@ -131,6 +139,9 @@
 \setlist[itemize]{label=\textcolor{AuraGold}{\small$\bullet$}}
 \setlist[enumerate]{label=\textcolor{AuraPlum}{\bfseries\arabic*.}}
 \clubpenalty=10000 \widowpenalty=10000
+% v0.2: a little extra stretch before TeX gives up and lets a line overflow
+% (English tokens no longer hyphenate, see \en)
+\setlength{\emergencystretch}{1.5em}
 
 % ---------------------------------------------------------------------
 %  Direction commands
@@ -140,8 +151,13 @@
 % with \futurelet, so it never swallows the space after the unit).
 \def\aura@peekcolon{\futurelet\aura@next\aura@peekcolon@}
 \def\aura@peekcolon@{\ifx\aura@next:\aura@colonfix\fi}
-\newcommand{\en}[1]{\leavevmode\textenglish{#1}\aura@peekcolon}
-\newcommand{\ltr}[1]{\leavevmode\LR{#1}\aura@peekcolon}
+% Robust (v0.2): in a caption they are written to the .lof/.lot unexpanded,
+% so the space after them is kept in the lists of figures and tables.
+% \hyphenchar=-1: an English token is never broken at a line end
+% (no "Super-/Pharm", no "REQ-/01").
+\DeclareRobustCommand{\en}[1]{\leavevmode
+  \textenglish{\hyphenchar\font=-1 #1}\aura@peekcolon}
+\DeclareRobustCommand{\ltr}[1]{\leavevmode\LR{#1}\aura@peekcolon}
 \newcommand{\mathheb}[1]{\text{\texthebrew{#1}}}
 \newenvironment{diagram}{\par\centering\begin{LTR}}{\end{LTR}\par}
 
@@ -187,8 +203,17 @@
 % TOC and lists: tighter line spacing than the body
 \let\aura@toc\tableofcontents \let\aura@lof\listoffigures \let\aura@lot\listoftables
 \renewcommand{\tableofcontents}{\begingroup\setstretch{1.1}\aura@toc\endgroup}
-\renewcommand{\listoffigures}{\begingroup\setstretch{1.1}\aura@lof\endgroup}
-\renewcommand{\listoftables}{\begingroup\setstretch{1.1}\aura@lot\endgroup}
+% v0.2: the lists of figures and tables are listed in the TOC
+% (\clearpage first, so the TOC line gets the page on which the list starts)
+\renewcommand{\listoffigures}{\clearpage\begingroup\setstretch{1.1}%
+  \addcontentsline{toc}{chapter}{\listfigurename}%
+  \aura@lof\endgroup}
+\renewcommand{\listoftables}{\clearpage\begingroup\setstretch{1.1}%
+  \addcontentsline{toc}{chapter}{\listtablename}%
+  \aura@lot\endgroup}
+% v0.2: a wider number box, so "10.12" never touches the caption text
+\renewcommand*{\l@figure}{\@dottedtocline{1}{0em}{2.9em}}
+\renewcommand*{\l@table}{\@dottedtocline{1}{0em}{2.9em}}
 
 % ---------------------------------------------------------------------
 %  Captions: figure caption below, table caption above, numbered by chapter
@@ -354,16 +379,36 @@
 % ---------------------------------------------------------------------
 %  Keywords, abbreviations, references
 % ---------------------------------------------------------------------
-\newcommand{\sep}{\enspace\textcolor{AuraGold}{\textbullet}\enspace}
+% v0.2: the bullet stays with the previous keyword, so it never starts a line
+% (ends with explicit glue: the space after "\sep" in the source is swallowed,
+% so the line must be allowed to break here)
+\newcommand{\sep}{\unskip\nobreak\enspace\textcolor{AuraGold}{\textbullet}%
+  \hskip 0.5em plus 0.3em\relax}
 \newcommand{\keywords}[1]{\par\medskip\noindent
   {\sffamily\bfseries\color{AuraPlum}מילות מפתח:}\enspace #1\par}
 
+% v0.2: tighter rows, so the list fits on one page as it grows
 \newenvironment{abbreviations}
-  {\begin{center}\auratablestripes
-   \begin{tabular}{>{\raggedleft\arraybackslash}p{3cm} p{10.5cm}}
+  {\begin{center}\auratablestripes\small\setstretch{1.0}%
+   \renewcommand{\arraystretch}{1.15}%
+   \begin{tabular}{>{\raggedleft\arraybackslash}p{3cm} >{\raggedleft\arraybackslash}p{10.5cm}}
    \headrow \hcell{קיצור} & \hcell{פירוש} \\}
   {\end{tabular}\end{center}}
 \newcommand{\abbr}[2]{\en{#1} & #2 \\}
+
+% v0.2: compact bibliography: single spacing, small type, ragged right,
+% URLs may break after any character, and online sources print their year
+% (the IEEE driver for @online leaves the date out).
+\setcounter{biburlnumpenalty}{100}
+\setcounter{biburlucpenalty}{100}
+\setcounter{biburllcpenalty}{100}
+\renewcommand*{\bibfont}{\small\setstretch{1.0}\raggedright}
+\setlength{\bibitemsep}{0.25\baselineskip}
+\RequirePackage{xpatch}
+\xpatchbibdriver{online}
+  {\printlist{organization}}
+  {\printlist{organization}\setunit{\addcomma\addspace}\usebibmacro{date}}
+  {}{\ClassWarning{aura-report}{Could not add the year to @online entries}}
 
 \newcommand{\printreferences}{%
   \chapter*{מקורות}\addcontentsline{toc}{chapter}{מקורות}%
