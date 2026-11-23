@@ -1,0 +1,16 @@
+% Chapter 3: the flagship paper sits where the three selection criteria meet.
+% Used inside \begin{diagram} (LTR); Hebrew labels use \texthebrew.
+\begin{tikzpicture}[
+    crit/.style={circle, minimum size=3.3cm, fill=#1, fill opacity=0.28,
+      draw=#1, line width=0.9pt},
+    lab/.style={font=\sffamily\footnotesize, text=AuraPlum, align=center,
+      text width=1.5cm}]
+  \node[crit=AuraBerry] (a) at (0,0)      {};
+  \node[crit=AuraHoney] (b) at (2.0,0)    {};
+  \node[crit=AuraPeach] (c) at (1.0,-1.7) {};
+  \node[lab] at (-0.55,0.35)  {\texthebrew{במה\\שפיטה}};
+  \node[lab] at (2.55,0.35)   {\texthebrew{קרבה\\לבעיה}};
+  \node[lab] at (1.0,-2.45)   {\texthebrew{חזרתיות}};
+  \node[lab, font=\sffamily\scriptsize\bfseries] at (1.0,-0.55)
+    {\texthebrew{מאמר\\הדגל}};
+\end{tikzpicture}
